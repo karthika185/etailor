@@ -331,15 +331,8 @@ var_dump($dao->getErrors());
 	  	<div class="container">
 	  		<h3>e-Tailoring</h3>
 	  		<p>Style your own clothes</p>
-	  		<div class="social-links">
-	  			<a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        		<a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-	  		</div>
       		<div class="copyright">
       			 &copy; Copyright <strong><span>e-Tailor</span></strong>. All Rights Reserved
-      		</div>
-      		<div class="credits">
-      			 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       		</div>
 	  	</div>
 	  </footer>
