@@ -8,149 +8,177 @@ header('location:../login.php');
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        table {
-          border-collapse: collapse;
-          width: 100%;
-        }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-        th, td {
-          text-align: left;
-          padding: 8px;
-        }
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
 
-        th {
-          background-color: #ffb03b;
-          color: white;
+    th {
+        background-color: #ffb03b;
+        color: white;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #666;
+    }
+
+    input,
+    textarea {
+        outline: none;
+    }
+
+    .section-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: #f5d09a;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    form {
+        position: relative;
+        width: 80%;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration,
+    .form-right-decoration {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 20px;
+        background: #f5d09a;
+    }
+
+    .form-left-decoration {
+        bottom: 60px;
+        left: -30px;
+    }
+
+    .form-right-decoration {
+        top: 60px;
+        right: -30px;
+    }
+
+    .form-left-decoration:before,
+    .form-left-decoration:after,
+    .form-right-decoration:before,
+    .form-right-decoration:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration:before {
+        top: -20px;
+    }
+
+    .form-left-decoration:after {
+        top: 20px;
+        left: 10px;
+    }
+
+    .form-right-decoration:before {
+        top: -20px;
+        right: 0;
+    }
+
+    .form-right-decoration:after {
+        top: 20px;
+        right: 10px;
+    }
+
+    .circle {
+        position: absolute;
+        bottom: 80px;
+        left: -55px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .form-inner {
+        padding: 40px;
+    }
+
+    .form-inner input,
+    .form-inner textarea {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 20px;
+        background: #ffb03b;
+    }
+
+    .form-inner textarea {
+        resize: none;
+    }
+
+    .button {
+        width: 50%;
+        padding: 2px;
+        margin-top: 20px;
+        border-radius: 20px;
+        border: none;
+        border-bottom: 4px solid #ffb03b;
+        background: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .button:hover {
+        background: #d0dfe8;
+    }
+
+    @media (min-width: 568px) {
+        form {
+            width: 60%;
         }
-        * {
-          box-sizing: border-box;
-          }
-      html, body {
-      min-height: 100vh;
-      padding: 0;
-      margin: 0;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 14px;
-      color: #666;
-      }
-      input, textarea {
-      outline: none;
-      }
-      .section-1 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background: #f5d09a;
-      }
-      h1 {
-      margin-top: 0;
-      font-weight: 500;
-      }
-      form {
-      position: relative;
-      width: 80%;
-      border-radius: 30px;
-      background: #fff;
-      }
-      .form-left-decoration,
-      .form-right-decoration {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 20px;
-      border-radius: 20px;
-      background: #f5d09a;
-      }
-      .form-left-decoration {
-      bottom: 60px;
-      left: -30px;
-      }
-      .form-right-decoration {
-      top: 60px;
-      right: -30px;
-      }
-      .form-left-decoration:before,
-      .form-left-decoration:after,
-      .form-right-decoration:before,
-      .form-right-decoration:after {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 20px;
-      border-radius: 30px;
-      background: #fff;
-      }
-      .form-left-decoration:before {
-      top: -20px;
-      }
-      .form-left-decoration:after {
-      top: 20px;
-      left: 10px;
-      }
-      .form-right-decoration:before {
-      top: -20px;
-      right: 0;
-      }
-      .form-right-decoration:after {
-      top: 20px;
-      right: 10px;
-      }
-      .circle {
-      position: absolute;
-      bottom: 80px;
-      left: -55px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      }
-      .form-inner {
-      padding: 40px;
-      }
-      .form-inner input,
-      .form-inner textarea {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 20px;
-      background: #ffb03b;
-      }
-      .form-inner textarea {
-      resize: none;
-      }
-      .button {
-      width: 50%;
-      padding: 2px;
-      margin-top: 20px;
-      border-radius: 20px;
-      border: none;
-      border-bottom: 4px solid #ffb03b;
-      background: #fff;
-      font-size: 16px;
-      font-weight: 400;
-      color: #fff;
-      }
-      .button:hover {
-      background: #d0dfe8;
-      }
-      @media (min-width: 568px) {
-      form {
-      width: 60%;
-      }
-      }
-        </style>
-    
+    }
+    </style>
+
 </head>
+
 <body>
     <input type="checkbox" id="checkbox">
     <header class="header">
@@ -188,7 +216,7 @@ header('location:../login.php');
                         <span>Customer Enquiry</span>
                     </a>
                 </li>
-                 <li>
+                <li>
                     <a href="btqenq.php">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <span>Boutique Enquiry</span>
@@ -345,14 +373,16 @@ header('location:../login.php');
                 if($data= $dao->getData("*","tbl_btqreg","btq_status='$c'"))
                 {
                 ?>
-            <center><p style="color: black;font-family:satisfy">Boutique Requests</p></center>
+            <center>
+                <p style="color: black;font-family:satisfy">Boutique Requests</p>
+            </center>
             <form method="post" class="decor">
                 <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>
                 <div class="form-inner">
-                    
-          
+
+
                     <table>
                         <tr>
                             <th>Boutique name</th>
@@ -362,26 +392,27 @@ header('location:../login.php');
                             <th>License</th>
                             <th>Accept/Reject</th>
                         </tr>
-                            <?php
+                        <?php
                             foreach ($data as $rqst)
                             {
                                 ?>
-                                <tr>
-                                    <input type="hidden" name="id" value="<?php echo $rqst["btq_id"]; ?>"></input>
-                                    <td><?php echo $rqst["btq_name"]; ?></td>
-                                    <td><?php echo $rqst["btq_owner"]; ?></td>
-                                    <td><?php echo $rqst["btq_email"]; ?></td>
-                                    <td><?php echo $rqst["btq_phone"]; ?></td>
-                                    <td><?php echo $rqst["btq_lic"]; ?></td>
-                                    <td><input type="submit" name="accept" value="accept" class="button" />
-                                    <input type="submit" name="reject" value="reject" class="button"/></td>
-                                </tr>
-                                <?php
+                        <tr>
+                            <input type="hidden" name="id" value="<?php echo $rqst["btq_id"]; ?>"></input>
+                            <td><?php echo $rqst["btq_name"]; ?></td>
+                            <td><?php echo $rqst["btq_owner"]; ?></td>
+                            <td><?php echo $rqst["btq_email"]; ?></td>
+                            <td><?php echo $rqst["btq_phone"]; ?></td>
+                            <td><?php echo $rqst["btq_lic"]; ?></td>
+                            <td><input type="submit" name="accept" value="accept" class="button" />
+                                <input type="submit" name="reject" value="reject" class="button" />
+                            </td>
+                        </tr>
+                        <?php
                             }
                             ?>
                     </table>
 
-                <?php
+                    <?php
                 }
                 else
                 {
@@ -392,46 +423,6 @@ header('location:../login.php');
                 </div>
             </form>
         </section>
-    </body>
+</body>
+
 </html>
-            
-           
- 
-           
-            
-
-
-          
-            
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-

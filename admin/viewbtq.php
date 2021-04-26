@@ -39,40 +39,47 @@ if(isset($_POST["btq_id"]))
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-		table {
-  border-collapse: collapse;
-  width: 100%;
-}
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-th, td {
-  text-align: left;
-  padding: 8px;
-}
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
 
-tr:nth-child(even){background-color: #f2f2f2}
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
 
-th {
-  background-color: #ffb03b;
-  color: white;
-}
-.btn{background: #ffb03b;
-    color: #fff;
-    border-radius: 30px;
-    margin: 0 0 0 20px;
-    padding: 5px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    white-space: nowrap;
-}
-		</style>
+    th {
+        background-color: #ffb03b;
+        color: white;
+    }
+
+    .btn {
+        background: #ffb03b;
+        color: #fff;
+        border-radius: 30px;
+        margin: 0 0 0 20px;
+        padding: 5px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        transition: 0.3s;
+        white-space: nowrap;
+    }
+    </style>
 </head>
+
 <body>
     <input type="checkbox" id="checkbox">
     <header class="header">
@@ -110,7 +117,7 @@ th {
                         <span>Customer Enquiry</span>
                     </a>
                 </li>
-                 <li>
+                <li>
                     <a href="btqenq.php">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <span>Boutique Enquiry</span>
@@ -175,76 +182,61 @@ th {
                 if($boutiques = $dao->getData("*","tbl_btqreg"))
                 {
                     ?>
-                    <table>
-                        <tr>
-                            <th>Boutique Name</th>
-                            <th>Owner Name</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>License</th>
-                            <th>Status</th>
-                        </tr>
-                        <?php
+            <table>
+                <tr>
+                    <th>Boutique Name</th>
+                    <th>Owner Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>License</th>
+                    <th>Status</th>
+                </tr>
+                <?php
                         foreach($boutiques as $btq)
                         {
                         ?>
-                        <form method="post">
-                            <tr>
-                                <input type="hidden" name="id" value="<?php echo $btq["btq_id"];?>">
-                                <td><?php echo $btq["btq_name"]; ?></td>
-                                <td><?php echo $btq["btq_owner"]; ?></td>
-                                <td><?php echo $btq["btq_address"]; ?></td>
-                                <td><?php echo $btq["btq_email"]; ?></td>
-                                <td><?php echo $btq["btq_phone"]; ?></td>
-                                <td><?php echo $btq["btq_lic"]; ?></td>
-                                <td>
-                                    <?php
+                <form method="post">
+                    <tr>
+                        <input type="hidden" name="id" value="<?php echo $btq["btq_id"];?>">
+                        <td><?php echo $btq["btq_name"]; ?></td>
+                        <td><?php echo $btq["btq_owner"]; ?></td>
+                        <td><?php echo $btq["btq_address"]; ?></td>
+                        <td><?php echo $btq["btq_email"]; ?></td>
+                        <td><?php echo $btq["btq_phone"]; ?></td>
+                        <td><?php echo $btq["btq_lic"]; ?></td>
+                        <td>
+                            <?php
                                     if($btq["btq_status"]=="A")
                                     {
                                         ?>
-                                        <input type="submit" name="block" value="block"/>
-                                        <?php
+                            <input type="submit" name="block" value="block" />
+                            <?php
                                     }
                                     if($btq["btq_status"]=="B")
                                     {
                                         ?>
-                                        <input type="submit" name="unblock" value="unblock"/>
-                                </td>
-                                    <?php
+                            <input type="submit" name="unblock" value="unblock" />
+                        </td>
+                        <?php
                                     }
                                     ?>
-                            </tr>
-                        </form>  
-                        <?php 
+                    </tr>
+                </form>
+                <?php 
                         }
-                        ?>                                              
-                    </table>
-                    <?php
+                        ?>
+            </table>
+            <?php
                 }
                 else
                 {
                     echo "<h3>No boutiques found ".$dao->getErrors()."</h3>";
                 }
                 ?>
-                <br><br><br><br><a href="printBoutique.php">PRINT</a>
-            </section>
-        </div>
-    </body>
+            <br><br><br><br><a href="printBoutique.php">PRINT</a>
+        </section>
+    </div>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           

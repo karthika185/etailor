@@ -9,12 +9,14 @@ header('location:../login.php');
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
+
 </head>
+
 <body>
     <input type="checkbox" id="checkbox">
     <header class="header">
@@ -52,7 +54,7 @@ header('location:../login.php');
                         <span>Customer Enquiry</span>
                     </a>
                 </li>
-                 <li>
+                <li>
                     <a href="btqenq.php">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <span>Boutique Enquiry</span>
@@ -91,39 +93,11 @@ header('location:../login.php');
             </ul>
         </nav>
         <section class="section-1">
-           
-        
+
+
         </section>
     </div>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
