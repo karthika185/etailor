@@ -20,7 +20,7 @@ if(isset($_POST["submit"]))
   {
        
     
-       $data = array("guest_name"=>$_POST["name"],"guest_email"=>$_POST["email"],"guest_subject"=>$_POST["subject"],"guest_message"=>$_POST["message"]);
+       $data = array("guest_name"=>$_POST["name"],"guest_email"=>$_POST["email"],"guest_subject"=>$_POST["subject"],"guest_message"=>$_POST["message"],"guest_status"=>"A");
 
 if($dao->insert($data,"tbl_guest"))
 {

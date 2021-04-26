@@ -243,16 +243,37 @@ th {
         </nav>
         <section class="section-1">
             <center><p style="color: black;font-family:satisfy">GUSET ENQUIRY</p></center>
-            <form action="" method="post" class="decor">
+            <form action="responded.php" method="post" class="decor">
       <div class="form-left-decoration"></div>
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
  
-           <?php 
-			require_once("../classes/DataAccess.class.php");
-			$dao = new DataAccess();
-			$fields=array("guest_name","guest_email","guest_subject","guest_message");
+           <?php require_once("../classes/FormAssist.class.php");
+require_once("../classes/DataAccess.class.php");
+require_once("../classes/FormValidator.class.php");
+$dao=new DataAccess();
+if(isset($_POST["id"]))
+                {
+                  $id=$_POST["id"]; 
+                 $data2= $dao->getData("guest_email","tbl_guest","guest_id='$id'");
+                $email = $data2[0]["guest_email"];
+
+                
+                 if(isset($_POST["responded"]))
+                  {
+                    var_dump($dao->lastQuery());
+                    $data["guest_status"]="B";
+                    //var_dump($dao->getErrors());
+                  }
+                  else
+                  {
+                    var_dump($dao->lastQuery());
+                    $msg="error";
+                    //var_dump($dao->getErrors());
+                  }
+                }
+			$fields=array("guest_name","guest_email","guest_subject","guest_message","guest_id");
 			if($guestenquiry= $dao->getData($fields,"tbl_guest"))
 			{
 				//var_dump(students);
@@ -277,12 +298,13 @@ th {
 						{
 							?>
 							<tr>
-								
+								<input type="hidden" name="id" value="<?php echo $guest["guest_id"]; ?>"></input>
 								<td><?php echo $guest["guest_name"]; ?></td>
 								<td><?php echo $guest["guest_email"]; ?></td>
                                 <td><?php echo $guest["guest_subject"]; ?></td>
                                 <td><?php echo $guest["guest_message"]; ?></td>
-                                <td><a class="btn" href="responded.php">Responded</a></td>
+                                <td><input type="submit" name="responded" value="responded"></td>
+                                <h6><?php echo isset($msg)?$msg:"";?></h6>
 		
 							</tr>
 
