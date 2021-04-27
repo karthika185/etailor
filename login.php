@@ -222,7 +222,7 @@ body {
     <div class="form-group">
             <input type="submit" class="btn btn-primary btn-lg" name="log" value="login" />
         </div>
-        <h2><?php echo isset($msg)?$msg:"";?></h2>
+        <h4><?php echo isset($msg)?$msg:"";?></h4>
     </form>
   
 </div>
