@@ -124,15 +124,15 @@ var_dump($dao->getErrors());
 	 			<div class="col-lg-4 mt-4 mt-lg-0">
 	 				<div class="box">
 	 					<span>02</span>
-	 					<h4>Repellat Nihil</h4>
-              			<p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+	 					<h4>Stitched Products</h4>
+              			<p>Buy stitched products</p>
 	 				</div>
 	 			</div>
 	 			<div class="col-lg-4 mt-4 mt-lg-0">
 	 				<div class="box">
 	 					<span>03</span>
-	 					<h4> Ad ad velit qui</h4>
-              			<p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+	 					<h4> Boutiques</h4>
+              			<p>Visit boutiques through the site</p>
 	 				</div>
 	 			</div>
 	 		</div>

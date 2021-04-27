@@ -10,7 +10,7 @@ require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("cat_name"=>"","subcategory_name"=>"","subcategory_pic"=>"");
-$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>""));
+$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"subcat_name","table"=>"tbl_subcategory")));
 $labels=array("subcategory_name"=>"SUB CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -45,7 +45,7 @@ if(isset($_POST["add"]))
 	}
 	else
 	{
-		die("dfsdfsd");
+		$msg="Insertion failed!! Category name should be unique and it must contain only character";
 	}
 }
 
@@ -55,7 +55,7 @@ if(isset($_POST["add"]))
 <html>
 
 <head>
-    <title>Subcategory page</title>
+    <title>Subcategory</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -306,7 +306,7 @@ if(isset($_POST["add"]))
                     <input type="submit" name="add" value="SUBMIT" class="button" />
 
                 </div>
-                <h4><?php echo isset($msg)?$msg:"";?></h4>
+                <center><h5><font color="red"><?php echo isset($msg)?$msg:"";?></font></h5></center>
             </form>
         </section>
     </div>

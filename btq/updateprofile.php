@@ -2,6 +2,11 @@
 session_start();
 $btq_id=$_SESSION["btq_id"];
 var_dump($btq_id);
+if(!isset($_SESSION['btq_name']))
+{
+header('location:../login.php');
+}
+
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
@@ -268,7 +273,7 @@ $form=new FormAssist($fields,$_POST);
                         <?php echo $form->textBox("owner_name",array("placeholder"=>"Owner Name","class"=>"form-control")); ?>
                         <?php echo $validator->error("owner_name"); ?>
                         <label>Email</label>
-                        <?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control")); ?>
+                        <?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control","readonly"=>"readonly")); ?>
                         <?php echo $validator->error("email"); ?>
                         <label>Address</label>
                         <?php echo $form->textArea("address",array("placeholder"=>"Address","class"=>"form-control")); ?>
@@ -277,7 +282,7 @@ $form=new FormAssist($fields,$_POST);
                         <?php echo $form->textBox("phone",array("placeholder"=>"Phone Number","class"=>"form-control")); ?>
                         <?php echo $validator->error("phone"); ?>
                         <label>License Number</label>
-                        <?php echo $form->textBox("license_no",array("placeholder"=>"License Number","class"=>"form-control")); ?>
+                        <?php echo $form->textBox("license_no",array("placeholder"=>"License Number","class"=>"form-control","readonly"=>"readonly")); ?>
                         <?php echo $validator->error("license_no"); ?>
                         <input type="submit" name="update" />
                         <h4><?php echo isset($msg)?$msg:"";?></h4>
