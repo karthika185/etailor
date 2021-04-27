@@ -10,7 +10,7 @@ require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("category_name"=>"");
-$rules=array("category_name"=>array("required"=>""));
+$rules=array("category_name"=>array("required"=>"","alphaspaceonly"=>""));
 $labels=array("category_name"=>"CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -32,6 +32,7 @@ if(isset($_POST["submit"]))
 
 else
 {
+  $msg="Validation Error";
 	$error=true;
 }
 }
@@ -157,7 +158,7 @@ else
       color: #fff;
       }
       .button:hover {
-      background: #d0dfe8;
+      background: #ffb03b;
       }
       @media (min-width: 568px) {
       form {
@@ -252,13 +253,14 @@ else
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
-        <center><p style="color: black;font-family:satisfy">CATEGORY</p></center>
+        
         <?php echo $form->textBox("category_name",array("class"=>"field","placeholder"=>"CATEGORY NAME")); ?>
         
         
         <input type="submit" name="submit" class="button" />
+        <center><h4><?php echo isset($msg)?$msg:"";?></h4></center>
       </div>
-      <h4><?php echo isset($msg)?$msg:"";?></h4>
+      
     </form>
 
         </section>

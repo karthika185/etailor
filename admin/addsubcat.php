@@ -10,7 +10,7 @@ require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("cat_name"=>"","subcategory_name"=>"","subcategory_pic"=>"");
-$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>""));
+$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>""));
 $labels=array("subcategory_name"=>"SUB CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -24,7 +24,7 @@ if(isset($_POST["add"]))
 			require_once("../classes/FileUpload.class.php");
 			$upload= new FileUpload();
 			$types=["image/jpg","image/png","image/jpeg"];
-			if($file_name=$upload->doUploadCustom($_FILES["subcategory_pic"],$types,500,10,"../pics/subcatpics",$_POST["subcategory_name"]))
+			if($file_name=$upload->doUploadCustom($_FILES["subcategory_pic"],$types,1000,20,"../pics/subcatpics",$_POST["subcategory_name"]))
 			{
 				$data=array("cat_id"=>$_POST["cat_name"],"subcat_name"=>$_POST["subcategory_name"],"subcat_pic"=>$file_name,"subcat_status"=>"A");
 				if($dao->insert($data,"tbl_subcategory")) 
@@ -45,7 +45,7 @@ if(isset($_POST["add"]))
 	}
 	else
 	{
-		die("dfsdfsd");
+		$msg="Validation Errors";
 	}
 }
 
@@ -278,9 +278,9 @@ if(isset($_POST["add"]))
             
         
         <input type="submit" name="add" value="SUBMIT" class="button"/>
-        
-        </div>
         <h4><?php echo isset($msg)?$msg:"";?></h4>
+        </div>
+        
     </form>
         </section>
     </div>
