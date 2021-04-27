@@ -26,9 +26,17 @@ if(isset($_POST["log"]))
           $data = $dao->getData("*","tbl_btqreg","btq_email='".$_POST["email"]."'");
           $_SESSION["btq_id"]=$data[0]["btq_id"];
           $_SESSION["btq_name"]=$data[0]["btq_name"];
+          $_SESSION["btq_status"]=$data[0]["btq_status"];
+          if ($_SESSION["btq_status"]=="B") {
+            $msg="You are blocked";
+          }
+          else{
+            $_SESSION["username"]=$_POST["email"];
           header("location:btq/btqhome.php");
          //$msg=$type;
           var_dump($dao->getErrors());
+          }
+          
         }
         elseif($type=="C")
         {
@@ -214,7 +222,7 @@ body {
     <div class="form-group">
             <input type="submit" class="btn btn-primary btn-lg" name="log" value="login" />
         </div>
-        <h2><?php echo isset($msg)?$msg:"";?></h2>
+        <h4><?php echo isset($msg)?$msg:"";?></h4>
     </form>
   
 </div>

@@ -1,11 +1,16 @@
 <?php
 session_start();
 $btq_id=$_SESSION["btq_id"];
+if(!isset($_SESSION['btq_name']))
+{
+header('location:../login.php');
+}
+
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("name"=>"","pic"=>"","price"=>"","colors"=>"",);
-$rules=array("name"=>array("required"=>""),"price"=>array("required"=>""),"colors"=>array("required"=>""));
+$rules=array("name"=>array("required"=>"","alphaspaceonly"=>""),"price"=>array("required"=>"","regexp"=>'/^[0-9]+$/'),"colors"=>array("required"=>""));
 $labels=array("name"=>"NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -42,7 +47,7 @@ if(isset($_POST["add"]))
 	}
       else
       {
-      die("validationerrot");
+      $msg="Validation Error";
       }
 	
 }
@@ -279,7 +284,7 @@ if(isset($_POST["add"]))
                     <label>Upload Picture</label>
                     <?php echo $form->fileField("pic",array("placeholder"=>"Upload Picture")); ?>
                     <?php echo isset($msg_file)?$msg_file:""; ?>
-                    <label>Price</label>
+                    <label>Price per Metre</label>
                     <?php echo $form->textBox("price",array("placeholder"=>"Price")); ?>
                     <?php echo $validator->error("price"); ?>
                     <label>Colors</label>

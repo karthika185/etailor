@@ -10,7 +10,7 @@ require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("category_name"=>"");
-$rules=array("category_name"=>array("required"=>""));
+$rules=array("category_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"cat_name","table"=>"tbl_category")));
 $labels=array("category_name"=>"CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -32,7 +32,7 @@ if(isset($_POST["submit"]))
 
 else
 {
-	$error=true;
+	$msg="Insertion failed!! Category name should be unique and it must contain only character";
 }
 }
 ?>
@@ -41,7 +41,7 @@ else
 <html>
 
 <head>
-    <title>Subcategory</title>
+    <title>Category</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -277,15 +277,13 @@ else
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>
                 <div class="form-inner">
-                    <center>
-                        <p style="color: black;font-family:satisfy">CATEGORY</p>
-                    </center>
+      
                     <?php echo $form->textBox("category_name",array("class"=>"field","placeholder"=>"CATEGORY NAME")); ?>
 
 
                     <input type="submit" name="submit" class="button" />
                 </div>
-                <h4><?php echo isset($msg)?$msg:"";?></h4>
+                <center><h5><font color="red"><?php echo isset($msg)?$msg:"";?></font></h5></center>
             </form>
 
         </section>

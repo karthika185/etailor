@@ -1,6 +1,11 @@
 <?php
 session_start();
 $btq_id=$_SESSION["btq_id"];
+if(!isset($_SESSION['btq_name']))
+{
+header('location:../login.php');
+}
+
 
 ?>
 <!DOCTYPE html>

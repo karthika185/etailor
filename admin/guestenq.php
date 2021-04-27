@@ -302,7 +302,7 @@ if(isset($_POST["id"]))
                     //var_dump($dao->getErrors());
                   }
                 }
-			$fields=array("guest_name","guest_email","guest_subject","guest_message","guest_id");
+			$fields=array("guest_name","guest_email","guest_subject","guest_message","guest_response","guest_id");
 			if($guestenquiry= $dao->getData($fields,"tbl_guest"))
 			{
 				//var_dump(students);
@@ -315,6 +315,7 @@ if(isset($_POST["id"]))
 
                             <th>Subject</th>
                             <th>Message</th>
+                            <th>Reply</th>
                             <th>Clear</th>
 
                         </tr>
@@ -328,6 +329,7 @@ if(isset($_POST["id"]))
                             <td><?php echo $guest["guest_email"]; ?></td>
                             <td><?php echo $guest["guest_subject"]; ?></td>
                             <td><?php echo $guest["guest_message"]; ?></td>
+                            <td><input type="text" name="response"></td>
                             <td><a href="responded.php?guest_id=<?php echo $guest["guest_id"]; ?>">Responded</a></td>
                             <h6><?php echo isset($msg)?$msg:"";?></h6>
                         </tr>

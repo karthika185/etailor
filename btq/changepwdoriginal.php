@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-$username=$_SESSION["username"];
+$btq_id=$_SESSION['btq_id'];
 $conn = mysqli_connect("localhost", "root", "", "etailor") or die("Connection Error: " . mysqli_error($conn));
 
 if (count($_POST) > 0) {

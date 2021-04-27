@@ -1,6 +1,11 @@
 <?php
 session_start();
 $btq_id=$_SESSION["btq_id"];
+if(!isset($_SESSION['btq_name']))
+{
+header('location:../login.php');
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -107,10 +112,10 @@ $btq_id=$_SESSION["btq_id"];
                 </li>
             </ul>
         </nav>
-    </div>
+   
 
 
-    <div>
+   
         <section>
             <?php 
 			require_once("../classes/DataAccess.class.php");
@@ -159,7 +164,7 @@ $btq_id=$_SESSION["btq_id"];
 
 						?>
 
-            </table>
+           
 
 
             <?php
@@ -172,8 +177,9 @@ $btq_id=$_SESSION["btq_id"];
 
 		?>
         </section>
-    </div>
 
+   </div>
+</table>
 </body>
 
 </html>
