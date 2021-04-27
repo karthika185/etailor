@@ -269,6 +269,7 @@ header('location:../login.php');
 
                 if(isset($_POST["id"]))
                 {
+                  
                   $id=$_POST["id"];
                     $otp=rand(100000,999999);  
 

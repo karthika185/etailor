@@ -4,12 +4,12 @@ require_once("classes/FormAssist.class.php");
 require_once("classes/DataAccess.class.php");
 require_once("classes/FormValidator.class.php");
 
-$fields=array("customer_name"=>"","customer_email"=>"","customer_phone"=>"","customer_address"=>"","password"=>"","cpassword"=>"");
+$fields=array("customer_name"=>"","email"=>"","phone"=>"","customer_address"=>"","password"=>"","cpassword"=>"");
 $rules= array("customer_name"=>array("required"=>"","minlength"=>3,"maxlength"=>20,"nospecchars"=>"","alphaspaceonly"=>""),
 	        "customer_address"=>array("required"=>""),
-	        "customer_phone"=>array("required"=>"","regexp"=>'/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/',"minlength"=>10,"maxlength"=>10),
-	        "customer_email"=>array("required"=>"","email"=>""),
-	        "password"=>array("required"=>"","regexp"=>'/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{6,30}$/',"compare"=>array("compareto"=>"customer_email","operator"=>"!=")),
+	        "phone"=>array("required"=>"","regexp"=>'/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/',"minlength"=>10,"maxlength"=>10),
+	        "email"=>array("required"=>"","email"=>""),
+	        "password"=>array("required"=>"","regexp"=>'/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{6,30}$/',"compare"=>array("compareto"=>"email","operator"=>"!=")),
 	        "cpassword"=>array("required"=>"","compare"=>array("compareto"=>"password","operator"=>"=")),
 	        );
 $labels=array("customer_name"=>"CUSTOMER NAME","password"=>"PASSWORD","customer_address"=>"Address","cpassword"=>"Confirm Password");
@@ -22,27 +22,27 @@ if(isset($_POST["reg"]))
   {
        
     
-       $data = array("cust_name"=>$_POST["customer_name"],"cust_email"=>$_POST["customer_email"],"cust_address"=>$_POST["customer_address"],"cust_phone"=>$_POST["customer_phone"],"cust_status"=>"A");
+       $data = array("cust_name"=>$_POST["customer_name"],"cust_email"=>$_POST["email"],"cust_address"=>$_POST["customer_address"],"cust_phone"=>$_POST["phone"],"cust_status"=>"A");
 
 		if($dao->insert($data,"tbl_custreg"))
 		{
 
-			$data1=array("username"=>$_POST["customer_email"],"password"=>$_POST["password"],"usertype"=>"C");
+			$data1=array("username"=>$_POST["email"],"password"=>$_POST["password"],"usertype"=>"C");
 			if($dao->insert($data1,"tbl_login"))
 			{
-					//header("location:index.php");
+					header("location:login.php");
 					$msg="Registered, please Login";
-					var_dump($dao->getErrors());
+					//var_dump($dao->getErrors());
 			}
 			else
 			{    
-					var_dump($dao->getErrors());
+					//var_dump($dao->getErrors());
 					$msg="Insertion Failed ,please try again";
 			}
 		}
 		else
 		{
-			var_dump($dao->lastQuery());
+			//var_dump($dao->lastQuery());
 			$msg="Failed ,please try again";
         }
   }
@@ -187,8 +187,8 @@ body {
 						<i class="fa fa-paper-plane"></i>
 					</span>                    
 				</div>
-				<?php echo $form->textBox("customer_email",array("placeholder"=>"email","type"=>"email","class"=>"form-control")); ?>
-                  <?php echo $validator->error("customer_email"); ?>
+				<?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control")); ?>
+                  <?php echo $validator->error("email"); ?>
 			</div>
         </div>
         <div class="form-group">
@@ -209,8 +209,8 @@ body {
 						<span class="fa fa-user"></span>
 					</span>                    
 				</div>
-				<?php echo $form->textBox("customer_phone",array("placeholder"=>"Phone Number","class"=>"form-control")); ?>
-                  <?php echo $validator->error("customer_phone"); ?>
+				<?php echo $form->textBox("phone",array("placeholder"=>"Phone Number","class"=>"form-control")); ?>
+                  <?php echo $validator->error("phone"); ?>
 			</div>
         </div>
 		<div class="form-group">
@@ -240,7 +240,7 @@ body {
 		<div class="form-group">
             <input type="submit" class="btn btn-primary btn-lg" name="reg" value="register" />
         </div>
-        <h2><?php echo isset($msg)?$msg:"";?></h2>
+        <h4><?php echo isset($msg)?$msg:"";?></h4>
     </form>
 	<div class="text-center">Already have an account? <a href="login.php">Login here</a></div>
 </div>

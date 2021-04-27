@@ -8,8 +8,8 @@ $fields=array("boutique_name"=>"","owner_name"=>"","address"=>"","phone"=>"","li
 $rules= array("boutique_name"=>array("required"=>"","minlength"=>3,"maxlength"=>20,"nospecchars"=>"","alphaspaceonly"=>""),
         "owner_name"=>array("required"=>"","minlength"=>3,"maxlength"=>20,"alphaspaceonly"=>"","nospecchars"=>""),
         "address"=>array("required"=>""),
-        "phone"=>array("required"=>"","minlength"=>10,"maxlength"=>10,"unique"=>array("field"=>"btq_phone","table"=>"tbl_btqreg")),
-        "license_no"=>array("required","unique"=>array("field"=>"btq_lic","table"=>"tbl_btqreg")),
+        "phone"=>array("required"=>"","regexp"=>'/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/',"minlength"=>10,"maxlength"=>10,"unique"=>array("field"=>"btq_phone","table"=>"tbl_btqreg")),
+        "license_no"=>array("required","regexp"=>'/B[0-9]+$/',"unique"=>array("field"=>"btq_lic","table"=>"tbl_btqreg")),
         "email"=>array("required"=>"","email"=>"","unique"=>array("field"=>"btq_email","table"=>"tbl_btqreg")),);
 $labels=array("boutique_name"=>"BOUTIQUE NAME","address"=>"Address");
 $validator=new FormValidator($rules,$labels);
