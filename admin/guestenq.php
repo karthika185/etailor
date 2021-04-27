@@ -73,7 +73,7 @@ header('location:../login.php');
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 20px 20px 10px 10px;
         background: #f5d09a;
     }
 
@@ -188,7 +188,7 @@ header('location:../login.php');
 
     @media (min-width: 568px) {
         form {
-            width: 60%;
+            width: 80%;
         }
     }
     </style>
@@ -271,9 +271,7 @@ header('location:../login.php');
             </ul>
         </nav>
         <section class="section-1">
-            <center>
-                <p style="color: black;font-family:satisfy">GUEST ENQUIRY</p>
-            </center>
+            <p style="color: black; font-family:satisfy;">GUEST ENQUIRY</p>
             <form action="responded.php" method="post" class="decor">
                 <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
@@ -319,24 +317,19 @@ if(isset($_POST["id"]))
                             <th>Message</th>
                             <th>Clear</th>
 
-
-
-
-
                         </tr>
                         <?php
 						foreach($guestenquiry as $guest)
 						{
 							?>
                         <tr>
-                            <input type="hidden" name="id" value="<?php echo $guest["guest_id"]; ?>"></input>
+                            <input type="hidden" name="id" value="<?php echo $guest["guest_id"]; ?>"/>
                             <td><?php echo $guest["guest_name"]; ?></td>
                             <td><?php echo $guest["guest_email"]; ?></td>
                             <td><?php echo $guest["guest_subject"]; ?></td>
                             <td><?php echo $guest["guest_message"]; ?></td>
-                            <td><input type="submit" name="responded" value="responded"></td>
+                            <td><a href="responded.php?guest_id=<?php echo $guest["guest_id"]; ?>">Responded</a></td>
                             <h6><?php echo isset($msg)?$msg:"";?></h6>
-
                         </tr>
 
                         <?php
