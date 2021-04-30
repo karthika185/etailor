@@ -17,7 +17,8 @@ header('location:../login.php');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-    <style>table {
+    <style>
+    table {
         border-collapse: collapse;
         width: 100%;
     }
@@ -302,11 +303,11 @@ if(isset($_POST["id"]))
                     //var_dump($dao->getErrors());
                   }
                 }
-			$fields=array("guest_name","guest_email","guest_subject","guest_message","guest_response","guest_id");
-			if($guestenquiry= $dao->getData($fields,"tbl_guest"))
-			{
-				//var_dump(students);
-				?>`
+            $fields=array("guest_name","guest_email","guest_subject","guest_message","guest_response","guest_id");
+            if($guestenquiry= $dao->getData($fields,"tbl_guest"))
+            {
+                //var_dump(students);
+                ?>`
                     <table>
                         <tr>
 
@@ -320,9 +321,9 @@ if(isset($_POST["id"]))
 
                         </tr>
                         <?php
-						foreach($guestenquiry as $guest)
-						{
-							?>
+                        foreach($guestenquiry as $guest)
+                        {
+                            ?>
                         <tr>
                             <input type="hidden" name="id" value="<?php echo $guest["guest_id"]; ?>"/>
                             <td><?php echo $guest["guest_name"]; ?></td>
@@ -335,22 +336,22 @@ if(isset($_POST["id"]))
                         </tr>
 
                         <?php
-						}
+                        }
 
-						?>
+                        ?>
 
                     </table>
 
 
                     <?php
-			}
-			else
-			{
-				echo "<h3>No guests found ".$dao->getErrors()."</h3>";
-			}
+            }
+            else
+            {
+                echo "<h3>No guests found ".$dao->getErrors()."</h3>";
+            }
 
 
-		?>
+        ?>
             </form>
         </section>
     </div>

@@ -27,6 +27,7 @@ if(isset($_POST["log"]))
           $_SESSION["btq_id"]=$data[0]["btq_id"];
           $_SESSION["btq_name"]=$data[0]["btq_name"];
           $_SESSION["btq_status"]=$data[0]["btq_status"];
+          
           if ($_SESSION["btq_status"]=="B") {
             $msg="You are blocked";
           }
@@ -44,6 +45,8 @@ if(isset($_POST["log"]))
           $data=$dao->getData("*","tbl_custreg","cust_email='".$_POST["email"]."'");
           $_SESSION["cust_id"]=$data["cust_id"];
           $_SESSION["cust_name"]=$data[0]["cust_name"];
+          $_SESSION["cust_email"]=$data[0]["cust_email"];
+          $_SESSION["cust_phone"]=$data[0]["cust_phone"];
           header("location:cust/cust_home.php");
          //$msg=$type;
         }
