@@ -31,7 +31,7 @@ if($dao->insert($data,"tbl_guest"))
 else
 {
 $msg="Failed ,please try again";
-var_dump($dao->getErrors());
+//var_dump($dao->getErrors());
 //var_dump($dao->getQuery());
 
 }

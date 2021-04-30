@@ -1,6 +1,7 @@
 <?php
 session_start();
 $cust_id=$_SESSION["cust_id"];
+$cust_email=$_SESSION["cust_email"];
 if(!isset($_SESSION['cust_name']))
 {
 header('location:../login.php');
@@ -65,7 +66,7 @@ header('location:../login.php');
                     <li><a class="nav-link scrollto" href="customiseform.php">Customize</a></li>
                     <li><a class="nav-link scrollto" href="#menu">Search</a></li>
                     <li><a class="nav-link scrollto" href="#specials">Help</a></li>
-                    <li class="dropdown"><a href="#"><span><?php echo $_SESSION["cust_name"];?></span> </a>
+                    <li class="dropdown"><a href="#"><span><?php echo $_SESSION["cust_email"];?></span> </a>
                         <ul>
 
 

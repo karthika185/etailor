@@ -9,8 +9,9 @@ header('location:../login.php');
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
-$fields=array("cat_name"=>"","subcategory_name"=>"","subcategory_pic"=>"");
-$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"subcat_name","table"=>"tbl_subcategory")));
+$fields=array("cat_name"=>"","subcategory_name"=>"","subcategory_pic"=>"","subcat_name"=>"");
+$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"subcat_name","table"=>"tbl_subcategory"))
+,"subcat_name"=>array("required"=>""));
 $labels=array("subcategory_name"=>"SUB CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -300,6 +301,7 @@ if(isset($_POST["add"]))
                     <?php echo $form->textBox("subcategory_name",array("class"=>"field","placeholder"=>"SUBCATEGORY NAME")); ?><br><br>
                     <label>SUBCATEGORY PICTURE</label>
                     <?php echo $form->fileField("subcategory_pic",array("placeholder"=>"SUBCATEGORY PICTURE")); ?>
+                    
 
 
 
