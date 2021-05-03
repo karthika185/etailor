@@ -5,7 +5,7 @@ if(!isset($_SESSION['admin_name']))
 {
 header('location:../login.php');
 }
-
+$conn=mysqli_connect('localhost', 'root', '','etailor');
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
@@ -22,7 +22,10 @@ if(isset($_POST["submit"]))
 		$data=array("cat_name"=>$_POST["category_name"],"cat_status"=>"A");
 		if ($dao->insert($data,"tbl_category")) 
 		{
-			$msg="Success";
+			
+
+         $msg="Success"."<br>"."Category Name : ".$_POST["category_name"];
+     
 		}
 		else
 		{
@@ -41,7 +44,7 @@ else
 <html>
 
 <head>
-    <title>Category</title>
+    <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -281,12 +284,33 @@ else
                     <?php echo $form->textBox("category_name",array("class"=>"field","placeholder"=>"CATEGORY NAME")); ?>
 
 
-                    <input type="submit" name="submit" class="button" />
+                    <input type="submit" name="submit" class="button"/>
+                    
                 </div>
                 <center><h5><font color="red"><?php echo isset($msg)?$msg:"";?></font></h5></center>
+             
             </form>
+             <?php
+            $result=mysqli_query($conn,"SELECT cat_name FROM tbl_category");
+            ?>
+            <table>
+                <tr><th>CATEGORIES ADDED</th></tr>
+                <tr>
+                    <?php
+                        if (mysqli_num_rows($result)>0) {
+                            while($row=mysqli_fetch_array($result))
+                            {
+                               ?>
+                               <td><?php echo $row['cat_name'];?></td> 
+                               <?php
+                            }
+                        }
+                   ?>
+                </tr>
+            </table>
 
         </section>
+      
     </div>
 
 </body>
