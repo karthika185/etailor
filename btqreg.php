@@ -30,7 +30,8 @@ $data1=array("username"=>$_POST["email"],"password"=>"pending","usertype"=>"B");
 if($dao->insert($data1,"tbl_login"))
 {
 //header("location:index.php");
-$msg="You will get OTP via email. Login using that email";
+$msg="You will get OTP via email. 
+Login using that email";
 //header("location:login.php");
 }
 else
