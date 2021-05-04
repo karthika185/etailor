@@ -1,6 +1,7 @@
 <?php
 session_start();
 $admin_id=$_SESSION["admin_id"];
+$conn=mysqli_connect('localhost', 'root', '','etailor');
 if(!isset($_SESSION['admin_name']))
 {
 header('location:../login.php');
@@ -56,7 +57,7 @@ if(isset($_POST["add"]))
 <html>
 
 <head>
-    <title>Subcategory</title>
+    <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -310,6 +311,26 @@ if(isset($_POST["add"]))
                 </div>
                 <center><h5><font color="red"><?php echo isset($msg)?$msg:"";?></font></h5></center>
             </form>
+            <?php
+            $result=mysqli_query($conn,"SELECT tbl_category.cat_name, tbl_subcategory.subcat_name, tbl_subcategory.cat_id, tbl_subcategory.cat_id FROM tbl_category INNER JOIN tbl_subcategory ON tbl_category.cat_id=tbl_subcategory.cat_id");
+            ?>
+            <table>
+                <tr>
+                    <th>CATEGORIES ADDED</th>
+                    <th>SUBCATEGORIES</th>
+                </tr>
+                <tr>
+                    <?php
+                        if (mysqli_num_rows($result)>0) {
+                            while($row=mysqli_fetch_array($result))
+                            {
+                               ?>
+                               <td><?php echo $row['cat_name'];?></td>
+                               <td><?php echo $row['subcat_name'];?></td> 
+                               <?php
+                            }
+                        }
+                   ?>
         </section>
     </div>
 

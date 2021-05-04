@@ -29,7 +29,7 @@ if (count($_POST) > 0)
 <html>
 
 <head>
-    <title>boutique home</title>
+    <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>

@@ -9,7 +9,7 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>e-Tailoring</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -253,22 +253,13 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
       </select>
       <select class="form-control" id="sub-category-dropdown">
            <option value="">Select Sub Category</option>
-           <?php
-          $cat_id = $_POST["cat_id"];
-          $result = mysqli_query($conn,"SELECT * FROM tbl_category where subcat_id = $cat_id");
-         while($row = mysqli_fetch_array($result)) {
-          ?>
-        <option value="<?php echo $row["cat_id"];?>"><?php echo $row["cat_name"];?></option>
-        <?php
-       }
-      ?>
       </select>
       <script>
     $(document).ready(function() {
         $('#category-dropdown').on('change', function() {
             var cat_id = this.value;
             $.ajax({
-                url: "customiseform.php",
+                url:"get_subcat.php",
                 type: "POST",
                 data: {
                     cat_id: cat_id
