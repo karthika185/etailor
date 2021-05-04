@@ -206,15 +206,17 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
     <div class="form-inner">
       <center><p style="color: black;font-family:satisfy">CUSTOMIZE FORM</p></center>
       <label>Choose Boutique</label>
-      <?php
-      $result = mysqli_query($conn,"SELECT btq_name FROM tbl_btqreg WHERE btq_status='A'");
-      echo "<select name='btq_name'>";
-      while ($row = mysqli_fetch_array($result))
-      {
-          echo "<option value='" . $row['btq_name'] ."'>" . $row['btq_name'] ."</option>";
-      }
-      echo "</select>";
-      ?>
+
+      <select class="form-control" id="boutique" name="boutique">
+        <option value="">Select Boutique</option>
+        <?php
+        require "config.php";
+           $sql="SELECT  * from tbl_btqreg WHERE btq_status='A'";
+            
+        foreach ($dbo->query($sql) as $row) {
+            echo "<option value=$row[btq_id]>$row[btq_name]</option>";
+}
+?>
       <br>
       <label>Email</label>
       <?php
@@ -258,14 +260,11 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
 </select>
 <br>
 <label>Choose Material</label>
-<select class="form-control">
-  <?php
-  $sql="SELECT tbl_material.mat_name,tbl_material.mat_id,tbl_material.btq_id,tbl_btqreg.btq_id FROM tbl_material INNER JOIN tbl_btqreg ON tbl_material.btq_id=tbl_btqreg.btq_id";
-  foreach ($conn->query($sql) as $row) {
-            echo "<option value=$row[mat_id]>$row[mat_name]</option>";
-}
-    ?>
+
+<select class="form-control" name=material id=material>
+        <option value="">Select Material</option>
 </select>
+
 <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -278,6 +277,23 @@ $('#sub-category').empty(); //remove all existing options
 $.get('get_subcat.php',{'cat_id':cat_id},function(return_data){
 $.each(return_data.data, function(key,value){
     $("#sub-category").append("<option value=" + value.subcat_id +">"+value.subcat_name+"</option>");
+  });
+}, "json");
+///////
+});
+/////////////////////
+});
+
+$(document).ready(function() {
+////////////
+$('#boutique').change(function(){
+//var st=$('#category option:selected').text();
+var btq_id=$('#boutique').val();
+$('#material').empty(); //remove all existing options
+///////
+$.get('get_material.php',{'btq_id':btq_id},function(return_data){
+$.each(return_data.data, function(key,value){
+    $("#material").append("<option value=" + value.mat_id +">"+value.mat_name+"</option>");
   });
 }, "json");
 ///////
