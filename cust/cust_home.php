@@ -63,7 +63,15 @@ header('location:../login.php');
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="customiseform.php">Customize</a></li>
+                    <li class="dropdown"><a href="#"><span>Customise</span> </a>
+                        <ul>
+
+
+                            <li><a href="#">Send Request</a></li>
+                            <li><a href="customiseform.php">Choose Boutique</a></li>
+                        </ul>
+
+                    
                     <li><a class="nav-link scrollto" href="#menu">Search</a></li>
                     <li><a class="nav-link scrollto" href="#specials">Help</a></li>
                     <li class="dropdown"><a href="#"><span><?php echo $_SESSION["cust_email"];?></span> </a>

@@ -224,6 +224,12 @@ if(isset($_POST["add"]))
             </div>
             <ul>
                 <li>
+                    <a href="changepwd.php">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <span>Change Password</span>
+                    </a>
+                </li>
+                <li>
                     <a href="viewbtqprofile.php">
                         <i class="fa fa-desktop" aria-hidden="true"></i>
                         <span>Profile</span>
