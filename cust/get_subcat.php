@@ -1,18 +1,20 @@
-<?php
-session_start();
-$cust_id=$_SESSION["cust_id"];
-$cust_email=$_SESSION["cust_email"];
-$cust_phone=$_SESSION["cust_phone"];
-$conn=mysqli_connect('localhost', 'root', '','etailor');
+<?Php
+@$cat_id=$_GET['cat_id'];
+//$cat_id=2;
+/// Preventing injection attack //// 
+if(!is_numeric($cat_id)){
+echo "Data Error";
+exit;
+ }
+/// end of checking injection attack ////
+require "config.php"; // Database connection string 
 
+$sql="SELECT subcat_name,subcat_id FROM tbl_subcategory WHERE cat_id=:cat_id";
+$row=$dbo->prepare($sql);
+$row->bindParam(':cat_id',$cat_id,PDO::PARAM_INT,5);
+$row->execute();
+$result=$row->fetchAll(PDO::FETCH_ASSOC);
+
+$main = array('data'=>$result);
+echo json_encode($main);
 ?>
-<option value="">Select Sub Category</option>
-           <?php
-
-          $result = mysqli_query($conn,"SELECT  tbl_category.cat_id,tbl_category.cat_name,tbl_subcategory.cat_id,tbl_subcategory.subcat_name,tbl_subcategory.subcat_id FROM tbl_category INNER JOIN tbl_subcategory ON tbl_category.cat_id=tbl_subcategory.cat_id");
-         while($row = mysqli_fetch_array($result)) {
-          ?>
-        <option value="<?php echo $row["subcat_id"];?>"><?php echo $row["subcat_name"];?></option>
-        <?php
-       }
-      ?>

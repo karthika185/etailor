@@ -207,7 +207,7 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
       <center><p style="color: black;font-family:satisfy">CUSTOMIZE FORM</p></center>
       <label>Choose Boutique</label>
       <?php
-      $result = mysqli_query($conn,"SELECT btq_name FROM tbl_btqreg");
+      $result = mysqli_query($conn,"SELECT btq_name FROM tbl_btqreg WHERE btq_status='A'");
       echo "<select name='btq_name'>";
       while ($row = mysqli_fetch_array($result))
       {
@@ -240,38 +240,53 @@ $conn=mysqli_connect('localhost', 'root', '','etailor');
       echo"</table>";
       ?>
       <label>Choose Category</label>
-      <select class="form-control" id="category-dropdown">
+      <select class="form-control" id="category" name="category">
         <option value="">Select Category</option>
         <?php
-            $result = mysqli_query($conn,"SELECT * FROM tbl_category");
-            while($row = mysqli_fetch_array($result)) {
-        ?>
-            <option value="<?php echo $row['cat_id'];?>"><?php echo $row["cat_name"];?></option>
-        <?php
-            }
-        ?>
+        require "config.php";
+           $sql="SELECT  * from tbl_category ";
+            
+        foreach ($dbo->query($sql) as $row) {
+            echo "<option value=$row[cat_id]>$row[cat_name]</option>";
+}
+?>
       </select>
-      <select class="form-control" id="sub-category-dropdown">
-           <option value="">Select Sub Category</option>
-      </select>
-      <script>
-    $(document).ready(function() {
-        $('#category-dropdown').on('change', function() {
-            var cat_id = this.value;
-            $.ajax({
-                url:"get_subcat.php",
-                type: "POST",
-                data: {
-                    cat_id: cat_id
-                },
-                cache: false,
-                success: function(result){
-                    $("#sub-category-dropdown").html(result);
-                }
-            });
-        });
-    });
-    </script>
+      <br>
+      <label>Choose Subcategory</label>
+      <select class="form-control" name=sub-category id=sub-category>
+        <option value="">Select Subcategory</option>
+</select>
+<br>
+<label>Choose Material</label>
+<select class="form-control">
+  <?php
+  $sql="SELECT tbl_material.mat_name,tbl_material.mat_id,tbl_material.btq_id,tbl_btqreg.btq_id FROM tbl_material INNER JOIN tbl_btqreg ON tbl_material.btq_id=tbl_btqreg.btq_id";
+  foreach ($conn->query($sql) as $row) {
+            echo "<option value=$row[mat_id]>$row[mat_name]</option>";
+}
+    ?>
+</select>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+////////////
+$('#category').change(function(){
+//var st=$('#category option:selected').text();
+var cat_id=$('#category').val();
+$('#sub-category').empty(); //remove all existing options
+///////
+$.get('get_subcat.php',{'cat_id':cat_id},function(return_data){
+$.each(return_data.data, function(key,value){
+    $("#sub-category").append("<option value=" + value.subcat_id +">"+value.subcat_name+"</option>");
+  });
+}, "json");
+///////
+});
+/////////////////////
+});
+</script>
+      
+      
     </div>
   </form>
 </div>
