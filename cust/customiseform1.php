@@ -1,46 +1,40 @@
 <?php
 session_start();
 $cust_id=$_SESSION["cust_id"];
-require_once("../classes/FormAssist.class.php");
-require_once("../classes/DataAccess.class.php");
-require_once("../classes/FormValidator.class.php");
-$fields=array("btq_name"=>"","cust_email"=>"","cat_name"=>"","phn"=>"","subcat_name"=>"","color"=>"","material"=>"","measurements"=>"","address"=>"","sug"=>"");
-$rules=array("btq_name"=>array("required"=>""),"cust_email"=>array("required"=>""),"cat_name"=>array("required"=>""),"subcat_name"=>array("required"=>""),"color"=>array("required"=>""),"measurements"=>array("required"=>""),"address"=>array("required"=>""),"sug"=>array("required"=>""),"material"=>array("required"=>""),"phn"=>array("required"=>""));
-$labels=array();
-$validator=new FormValidator($rules,$labels);
-$form=new FormAssist($fields,$_POST);
-$dao=new DataAccess();
-if(isset($_POST["add"]))
+$cust_email=$_SESSION["cust_email"];
+$cust_phone=$_SESSION["cust_phone"];
+$conn=mysqli_connect('localhost', 'root', '','etailor');
+if(isset($_POST['save']))
 {
-  if($validator->validate($_POST))
-  {
-    $data=array("btq_id"=>$_POST["btq_name"],"cust_id"=>$_POST["cust_email"],"cat_id"=>$_POST["cat_name"],"subcat_id"=>$_POST["subcat_name"],"mat_id"=>$_POST["mat_name"],"custom_measure"=>$_POST["measurements"],"address"=>$_POST["address"],"custom_sug"=>$_POST["sug"]);
-    if($dao->insert($data,"tbl_custom"))
-    {
-      $msg="Success";
-    }
-    else
-    {
-      $msg="Insertion failed";
-    }
-  }
-  else
-  {
-    $error=true;
-  }
+  $boutique=$_POST['boutique'];
+  $email=$_POST['cust_email'];
+  $phn=$_POST['cust_phone'];
+  $cat=$_POST['cat_name'];
+  $subcat=$_POST['subcat_name'];
+  $mat=$_POST['mat_name'];
+  $sql = "INSERT INTO tbl_customiseform (custform_btq,custform_email,custform_phn,custform_cat,cusform_subcat,custform_mat)
+   VALUES ('$boutique','$email','$phn','$cat','$subcat','$mat')";
+   if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully !";
+   } else {
+    echo "Error: " . $sql . "
+" . mysqli_error($conn);
+   }
+   mysqli_close($conn);
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>e-Tailoring</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
     <style>
     body * {
         box-sizing: border-box;
@@ -55,12 +49,12 @@ if(isset($_POST["add"]))
         font-size: 14px;
 
         background-image: url("bg.jpg");
-        height: 100%;
+        height: 120%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
 
+    }
     input,
     textarea {
         outline: none;
@@ -93,7 +87,7 @@ if(isset($_POST["add"]))
         width: 50px;
         height: 20px;
         border-radius: 20px;
-        background: #f5d09a;
+        background: black;
     }
 
     .form-left-decoration {
@@ -188,77 +182,161 @@ if(isset($_POST["add"]))
             width: 60%;
         }
     }
-    </style>
-</head>
 
+    h3 {
+        font-family: satisfy;
+
+        color: #ffb03b;
+
+
+
+    }
+  </style>
+</head>
 <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">e-Tailoring</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><?php echo $_SESSION["cust_name"];?></a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Page 1-1</a></li>
-                        <li><a href="#">Page 1-2</a></li>
-                        <li><a href="#">Page 1-3</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Page 2</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+  <form action="" method="post" class="decor" enctype="multipart/form-data">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="form-inner">
+      <center><p style="color: black;font-family:satisfy">CUSTOMIZE FORM</p></center>
+      <br>
+      <label>Email</label>
+      <?php
+      $result = mysqli_query($conn,"SELECT * from tbl_custreg where cust_email = '{$_SESSION['cust_email']}'");
+      while($row=mysqli_fetch_array($result))
+      {
+          echo"<tr>";
+          echo"<td><input type=\"text\" name=\"cust_id\" value=\"".$row['cust_email']."\"></td>";
+          echo"</tr>";
+      }
+      echo"</table>";
+      ?>
+      <br>
+      <label>Phone Number</label>
+      <?php
+      $phn = mysqli_query($conn,"SELECT * from tbl_custreg where cust_phone = '{$_SESSION['cust_phone']}'");
+      while($row=mysqli_fetch_array($phn))
+      {
+          echo"<tr>";
+          echo"<td><input type=\"text\" name=\"cust_id\" value=\"".$row['cust_phone']."\"></td>";
+          echo"</tr>";
+      }
+      echo"</table>";
+      ?>
+      <label>Choose Category</label>
+      <select class="form-control" id="category" name="category">
+        <option value="">Select Category</option>
+        <?php
+        require "config.php";
+           $sql="SELECT  * from tbl_category ";
+            
+        foreach ($dbo->query($sql) as $row) {
+            echo "<option value=$row[cat_id]>$row[cat_name]</option>";
+}
+?>
+      </select>
+      <br>
+      <label>Choose Subcategory</label>
+      <select class="form-control" name=sub-category id=sub-category>
+        <option value="">Select Subcategory</option>
+</select>
+<br>
+<label>Choose Boutique</label>
 
-    <div class="container">
-        <form action="" method="post" class="decor" enctype="multipart/form-data">
-            <div class="form-left-decoration"></div>
-            <div class="form-right-decoration"></div>
-            <div class="circle"></div>
-            <div class="form-inner">
-                <center>
-                    <p style="color: black;font-family:satisfy">CUSTOMIZE FORM</p>
-                </center><br><br></center>
-                <label>Choose Boutique</label>
-                <?php
-        $btq=$dao->createOptions("btq_name","btq_id","tbl_btqreg");
-        echo $form->dropDownList("btq_name",array("select"),$btq,"Select Boutique");
-        echo $validator->error("btq_name");
-        ?>
-                <br><br><br>
-                <label>Email</label>
-                <?php
-        echo $form->textBox("cust_email",array("placeholder"=>"email","type"=>"email","class"=>"form-control"));
-        echo $validator->error("cust_email");
-        ?>
-                <label>Contact Number</label>
-                <?php
-        echo $form->textBox("phn",array("placeholder"=>"Phone Number","class"=>"form-control"));
-        echo $validator->error("phn");
-        ?>
-                <label>Choose Category</label>
-                <?php
-        $btq=$dao->createOptions("cat_name","cat_id","tbl_category");
-        echo $form->dropDownList("cat_name",array("class"=>"form-input","select"),$btq,"Select Category");
-        echo $validator->error("cat_name");
-        ?>
-                <br><br>
-                <label>Choose Subcategory</label>
-                <?php
-        $btq=$dao->createOptions("subcat_name","subcat_id","tbl_subcategory");
-        echo $form->dropDownList("subcat_name",array("class"=>"form-input","select"),$btq,"Select SubCategory");
-        echo $validator->error("subcat_name"); ?>
-            </div>
-        </form>
+      <select class="form-control" id="boutique" name="boutique">
+        <option value="">Select Boutique</option>
+        <?php
+        require "config.php";
+           $sql="SELECT  * from tbl_btqreg WHERE btq_status='A'";
+            
+        foreach ($dbo->query($sql) as $row) {
+            echo "<option value=$row[btq_id]>$row[btq_name]</option>";
+            
+}
+
+?>
+  </select>    
+      
+
+
+<br>
+<label>Choose Material</label>
+
+<select class="form-control" name=material id=material>
+        <option value="">Select Material</option>
+</select>
+<br>
+<label>Measurements</label>
+<input type="textarea" name="measurements" value="Measurements" ></input>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+////////////
+$('#category').change(function(){
+//var st=$('#category option:selected').text();
+var cat_id=$('#category').val();
+$('#sub-category').empty(); //remove all existing options
+///////
+$.get('get_subcat.php',{'cat_id':cat_id},function(return_data){
+$.each(return_data.data, function(key,value){
+    $("#sub-category").append("<option value=" + value.subcat_id +">"+value.subcat_name+"</option>");
+  });
+}, "json");
+///////
+});
+/////////////////////
+});
+
+$(document).ready(function() {
+////////////
+$('#boutique').change(function(){
+//var st=$('#category option:selected').text();
+var btq_id=$('#boutique').val();
+$('#material').empty(); //remove all existing options
+///////
+$.get('get_material.php',{'btq_id':btq_id},function(return_data){
+$.each(return_data.data, function(key,value){
+    $("#material").append("<option value=" + value.mat_id +">"+value.mat_name+"</option>");
+  });
+}, "json");
+///////
+});
+/////////////////////
+});
+</script>
+
+      
+      
     </div>
 
-</body>
+  </form>
+  <input type="submit" name="save"/>
+</div>
 
+</body>
 </html>
