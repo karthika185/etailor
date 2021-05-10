@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $cust_id=$_SESSION['cust_id'];
+  $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
   $conn=mysqli_connect('localhost', 'root', '','etailor');
