@@ -74,7 +74,8 @@
    
   <label>Email</label>
   <?php
-  $result ="SELECT * from tbl_custreg where cust_email = '{$_SESSION['cust_email']}'";
+  $conn=mysqli_connect('localhost', 'root', '','etailor');
+  $result ="SELECT * from tbl_custreg where cust_email = '{$_SESSION["cust_email"]}'";
   $res=mysqli_query($conn,$result);
   while($row = mysqli_fetch_array($res))
   {
