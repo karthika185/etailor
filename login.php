@@ -43,7 +43,7 @@ if(isset($_POST["log"]))
         {
           $_SESSION["C"]=$_POST["email"];
           $data=$dao->getData("*","tbl_custreg","cust_email='".$_POST["email"]."'");
-          $_SESSION["cust_id"]=$data["cust_id"];
+          $_SESSION["cust_id"]=$data[0]["cust_id"];
           $_SESSION["cust_name"]=$data[0]["cust_name"];
           $_SESSION["cust_email"]=$data[0]["cust_email"];
           $_SESSION["cust_phone"]=$data[0]["cust_phone"];
@@ -54,7 +54,7 @@ if(isset($_POST["log"]))
         {
           $_SESSION["A"]=$_POST["email"];
           $data=$dao->getData("*","tbl_admin","admin_email='".$_POST["email"]."'");
-          $_SESSION["admin_id"]=$data["admin_id"];
+          $_SESSION["admin_id"]=$data[0]["admin_id"];
           $_SESSION["admin_name"]=$data[0]["admin_name"];
           header("location:admin/adminhome.php");
          //$msg=$type;
