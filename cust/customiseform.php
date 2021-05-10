@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $cust_id=$_SESSION['cust_id'];
+  $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
   $conn=mysqli_connect('localhost', 'root', '','etailor');
@@ -74,7 +74,8 @@
    
   <label>Email</label>
   <?php
-  $result ="SELECT * from tbl_custreg where cust_email = '{$_SESSION['cust_email']}'";
+  $conn=mysqli_connect('localhost', 'root', '','etailor');
+  $result ="SELECT * from tbl_custreg where cust_email = '{$_SESSION["cust_email"]}'";
   $res=mysqli_query($conn,$result);
   while($row = mysqli_fetch_array($res))
   {

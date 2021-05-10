@@ -54,7 +54,7 @@ if(isset($_POST["log"]))
         {
           $_SESSION["A"]=$_POST["email"];
           $data=$dao->getData("*","tbl_admin","admin_email='".$_POST["email"]."'");
-          $_SESSION["admin_id"]=$data["admin_id"];
+          $_SESSION["admin_id"]=$data[0]["admin_id"];
           $_SESSION["admin_name"]=$data[0]["admin_name"];
           header("location:admin/adminhome.php");
          //$msg=$type;
