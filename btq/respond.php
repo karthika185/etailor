@@ -7,6 +7,9 @@ if(!isset($_SESSION['btq_name']))
 header('location:../login.php');
 
 }
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
 ?>
@@ -122,44 +125,51 @@ header('location:../login.php');
                 </li>
             </ul>
         </nav>
-        <table>
-            <tr>
-                <td>customer name</td>
-                <td>customer email</td>
-                <td>customer phone</td>
-                <td>Category</td>
-                <td>Subcategory</td>
-                <td>Material</td>
-                <td>Measurements</td>
-                <td>Suggestion</td>
-                <td>Proceed</td>
-            </tr>
-            <?php
+        <?php
             include("../dbconn.php");
-            $query="SELECT tbl_custreg.cust_name,tbl_customiseform.custform_mail,tbl_customiseform.cust_id,tbl_customiseform.custform_phn,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_material.mat_name,tbl_customiseform.custform_measure,tbl_customiseform.custform_sug,tbl_customiseform.custform_id FROM tbl_customiseform INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform.custform_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform.custform_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform.cust_id INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_btq = '$btq_id'";
-
-            $res=mysqli_query($conn,$query);
-            
-            while($rows=mysqli_fetch_array($res))
+            $sql="SELECT tbl_customiseform.custform_mail,tbl_customiseform.custform_phn,tbl_customiseform.custform_subcat,tbl_material.mat_price FROM tbl_customiseform INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_id = 'custform_id'";
+            $result=mysqli_query($conn,$sql) or die(mysql_error());
+            while($row=mysqli_fetch_array($result))
             {
-            ?>
-            <tr>
-                <td><?php echo $rows['cust_name'];?></td>
-                <td><?php echo $rows['custform_mail'];?></td>
-                <td><?php echo $rows['custform_phn'];?></td>
-                <td><?php echo $rows['cat_name'];?></td>
-                <td><?php echo $rows['subcat_name'];?></td>
-                <td><?php echo $rows['mat_name'];?></td>
-                <td><?php echo $rows['custform_measure'];?></td>
-                <td><?php echo $rows['custform_sug'];?></td>
-                <td><a href="respond.php?respond=<?php echo $rows['custform_id']; ?>">respond</td>
-            </tr>
-            <?php
-        }
+                 $mail     = $row['custform_mail'];
+                 $phn = $row['custform_phn  '];
+                 $dress = $row['custform_subcat'];
+                 $mat=$row['custform_mat'];
+                 $cost=$row['mat_price'];
+            
+
         ?>
-        </table>
-        <?php mysqli_close($conn);
-        ?>
+        <form action="respond.php" method="post" class="decor" enctype="multipart/form-data">
+            Email
+            <input type="text" name= "mail" value= "<?php echo $row ['mail']; ?>" >
+            <br>
+            Phone
+            <input type="text" name= "phn" value= "<?php echo $row ['phn']; ?>
+            " >
+            <br>
+            Dress
+            <input type="text" name= "dress" value= "<?php echo $row ['dress']; ?>
+            " >
+            <br>
+            Material
+            <input type="text" name= "mat" value= "<?php echo $row ['mat']; ?>
+            " >
+            <br>
+            Total Material
+            <input type="text" name= "totmat" value= "" >
+            <br>
+            Cost
+            <input type="text" name= "cost" value= "<?php echo $row ['cost']; ?>
+            " >
+            <br>
+            Total Cost
+            <input type="text" name= "totcost" value= "">
+             
+        </form>
+       <?php
+    }
+    ?>
+
     </div>
 
 </body>
