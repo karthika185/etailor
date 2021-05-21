@@ -127,39 +127,39 @@ error_reporting(E_ALL);
         </nav>
         <?php
             include("../dbconn.php");
-            $sql="SELECT tbl_customiseform.custform_mail,tbl_customiseform.custform_phn,tbl_customiseform.custform_subcat,tbl_material.mat_price FROM tbl_customiseform INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_id = 'custform_id'";
+            $custform_id = $_GET["respond"];
+            $sql="SELECT tbl_customiseform.custform_mail,tbl_customiseform.custform_phn,tbl_customiseform.custform_subcat,tbl_material.mat_price FROM tbl_customiseform INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_id = '$custform_id'";
             $result=mysqli_query($conn,$sql) or die(mysql_error());
             while($row=mysqli_fetch_array($result))
             {
-                 $mail     = $row['custform_mail'];
-                 $phn = $row['custform_phn  '];
+                 $mail = $row['custform_mail'];
+                 $phn = $row['custform_phn'];
                  $dress = $row['custform_subcat'];
-                 $mat=$row['custform_mat'];
                  $cost=$row['mat_price'];
             
 
         ?>
         <form action="respond.php" method="post" class="decor" enctype="multipart/form-data">
             Email
-            <input type="text" name= "mail" value= "<?php echo $row ['mail']; ?>" >
+            <input type="text" name= "mail" value= "<?php echo $mail; ?>" >
             <br>
             Phone
-            <input type="text" name= "phn" value= "<?php echo $row ['phn']; ?>
+            <input type="text" name= "phn" value= "<?php echo $phn; ?>
             " >
             <br>
             Dress
-            <input type="text" name= "dress" value= "<?php echo $row ['dress']; ?>
+            <input type="text" name= "dress" value= "<?php echo $dress; ?>
             " >
             <br>
             Material
-            <input type="text" name= "mat" value= "<?php echo $row ['mat']; ?>
+            <input type="text" name= "mat" value= "<?php echo "Material"; ?>
             " >
             <br>
             Total Material
             <input type="text" name= "totmat" value= "" >
             <br>
             Cost
-            <input type="text" name= "cost" value= "<?php echo $row ['cost']; ?>
+            <input type="text" name= "cost" value= "<?php echo $cost; ?>
             " >
             <br>
             Total Cost
