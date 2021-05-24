@@ -274,11 +274,13 @@ header('location:../login.php');
                 <p style="color: black;font-family:satisfy">CUSTOMER DETAILS</p>
             </center><br><br>
             <form action="" method="post" class="decor" enctype="multipart/form-data">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                 <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>
                 <div class="form-inner">
                     <?php 
+
 			require_once("../classes/DataAccess.class.php");
 			$dao = new DataAccess();
 			$fields=array("cust_name","cust_phone","cust_email","cust_address");
@@ -286,7 +288,7 @@ header('location:../login.php');
 			{
 				//var_dump(students);
 				?>
-                    <table>
+                    <table id="myTable">
                         <tr>
 
                             <th>Customer Name</th>
@@ -305,8 +307,6 @@ header('location:../login.php');
                             <td><?php echo $cust["cust_name"]; ?></td>
                             <td><?php echo $cust["cust_phone"]; ?></td>
                             <td><?php echo $cust["cust_email"]; ?></td>
-
-
                             <td><?php echo $cust["cust_address"]; ?></td>
 
                         </tr>
@@ -331,6 +331,29 @@ header('location:../login.php');
                     <br><br><br><br>
                     <center><a href="printCustomer.php" class="btn">PRINT</a></center>
             </form>
+            <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
         </section>
     </div>
 
