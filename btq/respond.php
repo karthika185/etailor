@@ -128,13 +128,14 @@ error_reporting(E_ALL);
         <?php
             include("../dbconn.php");
             $custform_id = $_GET["respond"];
-            $sql="SELECT tbl_customiseform.custform_mail,tbl_customiseform.custform_phn,tbl_customiseform.custform_subcat,tbl_material.mat_price FROM tbl_customiseform INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_id = '$custform_id'";
+            $sql="SELECT tbl_customiseform.custform_mail,tbl_customiseform.custform_phn,tbl_subcategory.subcat_name,tbl_customiseform.custform_subcat,tbl_material.mat_name,tbl_material.mat_price FROM tbl_customiseform INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform.custform_subcat WHERE custform_id = '$custform_id'";
             $result=mysqli_query($conn,$sql) or die(mysql_error());
             while($row=mysqli_fetch_array($result))
             {
                  $mail = $row['custform_mail'];
                  $phn = $row['custform_phn'];
-                 $dress = $row['custform_subcat'];
+                 $dress = $row['subcat_name'];
+                 $material = $row['mat_name'];
                  $cost=$row['mat_price'];
             
 
@@ -152,18 +153,29 @@ error_reporting(E_ALL);
             " >
             <br>
             Material
-            <input type="text" name= "mat" value= "<?php echo "Material"; ?>
+            <input type="text" name= "mat" value= "<?php echo $material; ?>
             " >
             <br>
-            Total Material
-            <input type="text" name= "totmat" value= "" >
-            <br>
-            Cost
-            <input type="text" name= "cost" value= "<?php echo $cost; ?>
+            Price per metre
+            <input type="text" name= "price" id="price" value= "<?php echo $cost; ?>
             " >
             <br>
-            Total Cost
-            <input type="text" name= "totcost" value= "">
+            Total metre
+            <input type="text" name= "mtr" id="mtr" value= "">
+            
+            <br>
+            Total cost
+            <input type="text" name= "tot" id="tot" value="" >
+           
+            <br>
+            <script>
+    $('#price, #mtr').change(function(){
+        var rate = parseFloat($('#price').val()) || 0;
+        var box = parseFloat($('#mtr').val()) || 0;
+       document.getElementById("#tot").val()='10';   
+    });
+</script>
+           
              
         </form>
        <?php
