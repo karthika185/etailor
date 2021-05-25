@@ -295,18 +295,18 @@ else
             ?>
             <table>
                 <tr><th>CATEGORIES ADDED</th></tr>
-                <tr>
                     <?php
                         if (mysqli_num_rows($result)>0) {
                             while($row=mysqli_fetch_array($result))
                             {
                                ?>
-                               <td><?php echo $row['cat_name'];?></td> 
+                               <tr>
+                               <td><?php echo $row['cat_name'];?></td>
+                               </tr>
                                <?php
                             }
                         }
                    ?>
-                </tr>
             </table>
 
         </section>
