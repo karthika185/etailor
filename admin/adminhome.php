@@ -320,7 +320,7 @@ header('location:../login.php');
                     $mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->Mailer = "smtp";
-                    $mail->SMTPDebug  = 1;  
+                    $mail->SMTPDebug  = 0;  
                     $mail->SMTPAuth   = TRUE;
                     $mail->SMTPSecure = "tls";
                     $mail->Port       = 587;
