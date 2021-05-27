@@ -301,7 +301,9 @@ else
                             while($row=mysqli_fetch_array($result))
                             {
                                ?>
+                               <tr>
                                <td><?php echo $row['cat_name'];?></td> 
+                                </tr>
                                <?php
                             }
                         }
