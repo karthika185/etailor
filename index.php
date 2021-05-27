@@ -302,7 +302,7 @@ var_dump($dao->getErrors());
 	 				<p>You will get mails for your queries</p>
 	 			</div>
 	 		
-	 		<form method="post" role="form" class="contact-form">
+	 		<form method="post" role="form" class="contact-form"  enctype="multipart/form-data">
 	 			<div class="row">
 	 				<div class="col-lg-4 col-md-6 form-group">
 	 					 <?php echo $form->textBox("name",array("placeholder"=>"Your Name","class"=>"form-control")); ?>

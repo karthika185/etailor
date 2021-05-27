@@ -20,8 +20,7 @@ error_reporting(E_ALL);
     <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <style type="text/css">
-       
+    <style>
     table {
         border-collapse: collapse;
         width: 100%;
@@ -34,7 +33,7 @@ error_reporting(E_ALL);
     }
 
     tr:nth-child(even) {
-        background-color: #f2f2f2
+        background-color: #fff;
     }
 
     th {
@@ -54,7 +53,148 @@ error_reporting(E_ALL);
         transition: 0.3s;
         white-space: nowrap;
     }
-    
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #666;
+    }
+
+    input,
+    textarea {
+        outline: none;
+    }
+
+    .section-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px 10px 10px;
+        background: #f5d09a;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    form {
+        position: relative;
+        width: 80%;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration,
+    .form-right-decoration {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 20px;
+        background: #f5d09a;
+    }
+
+    .form-left-decoration {
+        bottom: 60px;
+        left: -30px;
+    }
+
+    .form-right-decoration {
+        top: 60px;
+        right: -30px;
+    }
+
+    .form-left-decoration:before,
+    .form-left-decoration:after,
+    .form-right-decoration:before,
+    .form-right-decoration:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration:before {
+        top: -20px;
+    }
+
+    .form-left-decoration:after {
+        top: 20px;
+        left: 10px;
+    }
+
+    .form-right-decoration:before {
+        top: -20px;
+        right: 0;
+    }
+
+    .form-right-decoration:after {
+        top: 20px;
+        right: 10px;
+    }
+
+    .circle {
+        position: absolute;
+        bottom: 80px;
+        left: -55px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .form-inner {
+        padding: 40px;
+    }
+
+    .form-inner input,
+    .form-inner textarea {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 20px;
+        background: #d0dfe8;
+    }
+
+    .form-inner textarea {
+        resize: none;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 20px;
+        border: none;
+        border-bottom: 4px solid #ffb03b;
+        background: #ffb03b;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .button:hover {
+        background: #ffb03b;
+    }
+
+    @media (min-width: 568px) {
+        form {
+            width: 80%;
+        }
+    }
     </style>
 </head>
 
@@ -140,48 +280,65 @@ error_reporting(E_ALL);
             
 
         ?>
-        <form action="respond.php" method="post" class="decor" enctype="multipart/form-data">
-            Email
-            <input type="text" name= "mail" value= "<?php echo $mail; ?>" >
-            <br>
-            Phone
-            <input type="text" name= "phn" value= "<?php echo $phn; ?>
+        <section class="section-1">
+        <form action="form-to-email.php" method="POST" class="decor" enctype="multipart/form-data">
+
+            <center><p style="color: black;font-family:satisfy">RESPOND FORM</p></center>
+                <div class="form-left-decoration"></div>
+                <div class="form-right-decoration"></div>
+                <div class="circle"></div>
+                <div class="form-inner">
+                        <table>
+                        <tr>
+                            <td><label>EMAIL</label></td>
+                               <td> <input type="text" name= "mail" value= "<?php echo $mail; ?>" ></span></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>PHONE</label></td>
+                               <td>  <input type="text" name= "phn" value= "<?php echo $phn; ?>
+                                    " ></span></td>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td><label>DRESS</label></td>
+                               <td> <input type="text" name= "dress" value= "<?php echo $dress; ?>
+            " ></span></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>MATERIAL</label></td>
+                               <td><input type="text" name= "mat" value= "<?php echo $material; ?>
+            " ></span></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>PRICE PER METRE</label></td>
+                               <td><input type="text" name= "price" id="price" value= "<?php echo $cost; ?>
             " >
-            <br>
-            Dress
-            <input type="text" name= "dress" value= "<?php echo $dress; ?>
-            " >
-            <br>
-            Material
-            <input type="text" name= "mat" value= "<?php echo $material; ?>
-            " >
-            <br>
-            Price per metre
-            <input type="text" name= "price" id="price" value= "<?php echo $cost; ?>
-            " >
-            <br>
-            Total metre
-            <input type="text" name= "mtr" id="mtr" value= "">
-            
-            <br>
-            Total cost
-            <input type="text" name= "tot" id="tot" value="" >
-           
-            <br>
-            <script>
-    $('#price, #mtr').change(function(){
-        var rate = parseFloat($('#price').val()) || 0;
-        var box = parseFloat($('#mtr').val()) || 0;
-       document.getElementById("#tot").val()='10';   
-    });
-</script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>TOTAL METRE</label></td>
+                               <td><input type="text" name= "mtr" id="mtr" value= ""></span></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>TOTAL COST</label></td>
+                               <td><input type="text" name= "tot" id="tot" value="" ></span></td>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Send Form">
+
+        
            
              
         </form>
        <?php
     }
     ?>
-
+ 
     </div>
 
 </body>

@@ -301,8 +301,13 @@ else
                             {
                                ?>
                                <tr>
+
+                               <td><?php echo $row['cat_name'];?></td> 
+                                </tr>
+
                                <td><?php echo $row['cat_name'];?></td>
                                </tr>
+
                                <?php
                             }
                         }

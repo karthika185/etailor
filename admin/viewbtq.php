@@ -174,6 +174,7 @@ if(isset($_POST["btq_id"]))
                     else
                     {
                         //
+                        
                     }
                     if($dao->update($data,"tbl_btqreg","btq_id=$id"))
                     {
@@ -183,7 +184,7 @@ if(isset($_POST["btq_id"]))
                 if($boutiques = $dao->getData("*","tbl_btqreg"))
                 {
                     ?>
-                    
+
             <table>
                 <tr>
                     <th>Boutique Name</th>
