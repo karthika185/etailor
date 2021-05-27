@@ -285,7 +285,7 @@ header('location:../login.php');
                     $mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->Mailer = "smtp";
-                    $mail->SMTPDebug  = 1;  
+                    $mail->SMTPDebug  = 0;  
                     $mail->SMTPAuth   = TRUE;
                     $mail->SMTPSecure = "tls";
                     $mail->Port       = 587;
@@ -357,7 +357,7 @@ header('location:../login.php');
                   {
                     if($dao->update($data1,"tbl_login","username='$email'"))
                     {
-                      var_dump($dao->getErrors());
+                      //var_dump($dao->getErrors());
                     }
                     else
                     {
