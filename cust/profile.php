@@ -56,49 +56,34 @@ $form=new FormAssist($fields,$_POST);
     <div class="center">
       <h1>Update Profile</h1>
       <form role="form" class="form-horizontal row" action="" method="post" class="decor" enctype="multipart/form-data">
-                <div class="col-xs-3">
-                    <div class="form-group">
-                        <label for="Customer Name" class="col-sm-6 control-label">Customer Name</label>
-                        <div class="col-sm-6">
+                <div class="txt_field">
                             <?php echo $form->textBox("customer_name",array("placeholder"=>"Customer Name","class"=>"form-control")); ?>
                             <?php echo $validator->error("customer_name"); ?>
+                            <span></span>
+                            <label>Name</label>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">      
-                    <div class="form-group">
-                        <label for="Email"  class="col-sm-6 control-label" >Email</label>
-                        <div class="col-sm-6">
-                            <?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control","readonly"=>"readonly")); ?>
+                        <div class="txt_field">
+                            <?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control")); ?>
                             <?php echo $validator->error("email"); ?>
+                            <span></span>
+                            <label>Email</label>
                         </div>            
-                    </div>
-                </div>
-                <div class="col-xs-6">        
-                    <div class="form-group">
-                        <label for="Address"  class="col-sm-4 control-label">Address</label>
-                        <div class="col-sm-8">      
-                            <?php echo $form->textArea("address",array("placeholder"=>"Address","class"=>"form-control")); ?>
+                        <div class="txt_field">      
+                            <?php echo $form->textBox("address",array("placeholder"=>"Address","class"=>"form-control")); ?>
                             <?php echo $validator->error("address"); ?>
-                        </div>        
-                    </div> 
-                </div>     
-                <div class="col-xs-3">      
-                    <div class="form-group">
-                        <label for="Phone"  class="col-sm-6 control-label" >Phone</label>
-                        <div class="col-sm-6">
+                            <span></span>
+                            <label>Address</label>
+                        </div>            
+                        <div class="txt_field">
                             <?php echo $form->textBox("phone",array("placeholder"=>"Phone Number","class"=>"form-control")); ?>
                             <?php echo $validator->error("phone"); ?>
+                            <span></span>
+                            <label>Phone</label>
                         </div>            
-                    </div>
-                </div>  
-                <div class="col-xs-6">      
-                    <div class="form-group">
-                    <input class="col-sm-6 control-label" type="submit" name="update" />
+                    <input class="col-sm-6 control-label" type="submit" value="update" name="update" />
                         <h4><?php echo isset($msg)?$msg:"";?></h4>
-                        </div>            
-                    </div>
-                </div>
+                        <br>
+                        <br>
             </form>              
     </div>
 </body>

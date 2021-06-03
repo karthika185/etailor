@@ -111,6 +111,8 @@
     <label>Date</label>
   </div>
   <input type="submit" name="submit"></input>
+  <br>
+  <br>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function()

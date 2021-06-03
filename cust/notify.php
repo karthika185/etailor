@@ -8,8 +8,12 @@ $cust_email=$_SESSION["cust_email"];
 <html>
 <head>
 	<title>e-Tailoring</title>
+	<link rel="stylesheet" href="table.css">
 </head>
 <body>
+	<div class="filter">
+		
+	</div>
 	<table>
 		<tr>
 			<th>Boutique Name</th>
