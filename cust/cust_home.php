@@ -43,18 +43,24 @@ if(!isset($_SESSION['cust_name']))
   <header id="header">
     <div class="container">
 
-      <h1><a href="cust_home2.php">Hi <?php echo $_SESSION["cust_name"];?> !</a></h1>
+      <h1><a href="cust_home.php">Hi <?php echo $_SESSION["cust_name"];?> !</a></h1>
       <h2>Welcome to <span>e-Tailoring</span></h2>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link" href="#profile">Profile</a></li>
+          <li><a class="nav-link" href="profile.php">Profile</a></li>
           <li><a class="nav-link" href="notify.php">Notification</a></li>
           <li><a class="nav-link" href="customiseform1.php">Send Global Request</a></li>
           <li><a class="nav-link" href="customiseform.php">Send Boutique Request</a></li>
           <li><a class="nav-link" href="#search">Search</a></li>
+
           <li><a class="nav-link" href="help.php">Help</a></li>
           <li><a class="nav-link" href="../destroysession.php">Logout</a></li>
+
+          <li><a class="nav-link" href="#help">Help</a></li>
+          <li><a class="nav-link" href="#help">Change Password</a></li>
+          <li><a class="nav-link" href="#Logout">Logout</a></li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
