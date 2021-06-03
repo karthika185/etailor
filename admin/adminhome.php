@@ -295,9 +295,8 @@ header('location:../login.php');
 
                     $mail->IsHTML(true);
                     $mail->AddAddress($email, "smk");
-                    $mail->SetFrom("etailorsite@gmail.com", "your name");
-                    $mail->AddReplyTo("etailorsite@gmail.com", "Your name");
-                //$mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
+                    $mail->SetFrom("etailorsite@gmail.com", "eTailor");
+                    $mail->AddReplyTo("etailorsite@gmail.com", "eTailor");
                     $mail->Subject = "You have been accepted to the system.";
                     $content = "<b>Use the OTP and mail id to login.</b>".$otp;
 
@@ -320,7 +319,7 @@ header('location:../login.php');
                     $mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->Mailer = "smtp";
-                    $mail->SMTPDebug  = 1;  
+                    $mail->SMTPDebug  = 0;  
                     $mail->SMTPAuth   = TRUE;
                     $mail->SMTPSecure = "tls";
                     $mail->Port       = 587;
@@ -361,7 +360,7 @@ header('location:../login.php');
                     }
                     else
                     {
-                      var_dump($dao->getErrors());
+                      //var_dump($dao->getErrors());
                     }
 
                   }

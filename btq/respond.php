@@ -7,9 +7,29 @@ if(!isset($_SESSION['btq_name']))
 header('location:../login.php');
 
 }
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+if (isset($_POST['submit']))
+  {
+    $mail=$_POST['mail'];
+    $dress=$_POST['dress'];
+    $mat=$_POST['mat'];
+    $price=$_POST['price'];
+    $mtr=$_POST['mtr'];
+    $tot=$_POST['tot'];
+    $date=$_POST['date'];
+    $sql = "INSERT INTO tbl_respond (respond_btqid,respond_custmail,respond_dress,respond_mat,respond_price,respond_mtr,respond_cost,respond_date)
+   VALUES ('$btq_id','$mail','$dress','$mat','$price','$mtr','$tot','$date')";
+   if (mysqli_query($conn,$sql))
+   {
+     echo "New record created successfully !";
+   }
+   else
+   {
+    echo "Error: " . $sql . "
+" . mysqli_error($conn);;
+   }
+   mysqli_close($conn);
+  }
+
 
 
 ?>
@@ -281,7 +301,8 @@ error_reporting(E_ALL);
 
         ?>
         <section class="section-1">
-        <form action="form-to-email.php" method="POST" class="decor" enctype="multipart/form-data">
+        <form action="
+        " method="POST" class="decor" enctype="multipart/form-data">
 
             <center><p style="color: black;font-family:satisfy">RESPOND FORM</p></center>
                 <div class="form-left-decoration"></div>
@@ -328,8 +349,13 @@ error_reporting(E_ALL);
                                <td><input type="text" name= "tot" id="tot" value="" ></span></td>
                             </td>
                         </tr>
+                        <tr>
+                            <td><label>DATE</label></td>
+                               <td><input type="date" name= "date" id="date" value="" ></span></td>
+                            </td>
+                        </tr>
                     </table>
-                    <input type="submit" value="Send Form">
+                    <input type="submit" value="Send Form" name="submit">
 
         
            

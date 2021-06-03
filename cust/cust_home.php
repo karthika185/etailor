@@ -62,6 +62,7 @@ header('location:../login.php');
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
+                    <li><a class="nav-link scrollto " href="notify.php">Notification</a></li>
                     <li><a class="nav-link scrollto " href="#hero">Home</a></li>
                     <li class="dropdown"><a href="#"><span>Customise</span> </a>
                         <ul>
