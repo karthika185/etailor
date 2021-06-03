@@ -13,8 +13,9 @@
     $mat=$_POST['material'];
     $measure=$_POST['measurements'];
     $sug=$_POST['suggestion'];
-    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug)
-   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug')";
+    $date=$_POST['date'];
+    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug,form_date)
+   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
   if (mysqli_query($conn,$sql))
    {
      echo "New record created successfully !";
@@ -31,46 +32,14 @@
 <html>
 <head>
   <title>e-Tailoring</title>
-  <style type="text/css">
-    body {font-family: Arial, Helvetica, sans-serif;}
-    * {box-sizing: border-box;}
-
-    input[type=text], select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-top: 6px;
-      margin-bottom: 16px;
-      resize: vertical;
-    }
-
-    input[type=submit] {
-      background-color: #04AA6D;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    input[type=submit]:hover {
-      background-color: #45a049;
-    }
-
-    .container {
-      border-radius: 5px;
-      background-color: #f2f2f2;
-      padding: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="custom.css">
 </head>
 <body>
-  <div class="container">
+  <div class="center">
+      <h1>Global Request</h1>
   <form action="customiseform1.php" method="post" class="decor" enctype="multipart/form-data">
-   <label>Email</label>
-    <?php
+    <div class="txt_field">
+      <?php
   $conn=mysqli_connect('localhost', 'root', '','etailor');
   $result ="SELECT * from tbl_custreg where cust_email = '{$_SESSION["cust_email"]}'";
   $res=mysqli_query($conn,$result);
@@ -82,9 +51,11 @@
   }
   echo"</table>";
   ?>
-  <br>
-  <label>Phone Number</label>
-  <?php
+  <span></span>
+  <label>Email</label>
+    </div>
+    <div class="txt_field">
+      <?php
   $phn = mysqli_query($conn,"SELECT * from tbl_custreg where cust_phone = '{$_SESSION['cust_phone']}'");
   while($row=mysqli_fetch_array($phn))
   {
@@ -94,9 +65,12 @@
   }
   echo"</table>";
   ?>
-  <br>
-  <label>Choose Category</label>
-  <select id="category" name="category">
+  <span></span>
+  <label>Phone Number</label>
+    </div>
+   <div class="drop">
+    <label>Category</label>
+     <select id="category" name="category">
     <option value="">Select Category</option>
     <?php
     require "config.php";
@@ -107,21 +81,35 @@
     }
     ?>
   </select>
-  <br>
-  <label>Choose Subcategory</label>
-  <select name=sub-category id=sub-category>
+  <span></span>
+   </div>
+   <div class="drop">
+    <label>Subcategory</label>
+     <select name=sub-category id=sub-category>
     <option value="">Select Subcategory</option>
   </select>
-  <br>
-  <label>Do you have any fabric suggestion?</label>
-  <textarea name="material" id="material" value="material" ></textarea>
-  <br>
-  <label>Measurements</label>
-  <textarea name="measurements" id="measurements" value="Measurements" ></textarea>
-  <br>
-  <label>Suggestion</label>
-  <textarea name="suggestion" id="suggestion" value="suggestion" ></textarea>
-  <br>
+  <span></span>
+   </div>
+  <div class="txt_field">
+    <input type="text" name="material">
+    <span></span>
+    <label>Do you have any fabric suggestion?</label>
+  </div>
+  <div class="txt_field">
+    <input type="text" name="measurements">
+    <span></span>
+    <label>Measurements</label>
+  </div>
+  <div class="txt_field">
+    <input type="text" name="suggestion">
+    <span></span>
+    <label>Suggestion</label>
+  </div>
+  <div class="txt_field">
+    <input type="date" name="date">
+    <span></span>
+    <label>Date</label>
+  </div>
   <input type="submit" name="submit"></input>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript">
