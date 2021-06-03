@@ -13,8 +13,9 @@
     $mat=$_POST['material'];
     $measure=$_POST['measurements'];
     $sug=$_POST['suggestion'];
-    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug)
-   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug')";
+    $date=$_POST['date'];
+    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug,form_date)
+   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
   if (mysqli_query($conn,$sql))
    {
      echo "New record created successfully !";
@@ -121,6 +122,8 @@
   <br>
   <label>Suggestion</label>
   <textarea name="suggestion" id="suggestion" value="suggestion" ></textarea>
+  <label>Date</label>
+  <input type="date" name="date"></input>
   <br>
   <input type="submit" name="submit"></input>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

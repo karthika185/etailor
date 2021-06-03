@@ -11,8 +11,7 @@ require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
 $fields=array("cat_name"=>"","subcategory_name"=>"","subcategory_pic"=>"","subcat_name"=>"");
-$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"subcat_name","table"=>"tbl_subcategory"))
-,"subcat_name"=>array("required"=>""));
+$rules=array("cat_name"=>array("required"=>""),"subcategory_name"=>array("required"=>"","alphaspaceonly"=>"","unique"=>array("field"=>"subcat_name","table"=>"tbl_subcategory")));
 $labels=array("subcategory_name"=>"SUB CATEGORY NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -47,7 +46,7 @@ if(isset($_POST["add"]))
 	}
 	else
 	{
-		$msg="Insertion failed!! Category name should be unique and it must contain only character";
+		$msg="Insertion failed!! Subcategory name should be unique and it must contain only character";
 	}
 }
 
