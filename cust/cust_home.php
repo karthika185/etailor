@@ -55,12 +55,8 @@ if(!isset($_SESSION['cust_name']))
           <li><a class="nav-link" href="#search">Search</a></li>
 
           <li><a class="nav-link" href="help.php">Help</a></li>
+          <li><a class="nav-link" href="pwdchange.php">Change Password</a></li>
           <li><a class="nav-link" href="../destroysession.php">Logout</a></li>
-
-          <li><a class="nav-link" href="#help">Help</a></li>
-          <li><a class="nav-link" href="#help">Change Password</a></li>
-          <li><a class="nav-link" href="#Logout">Logout</a></li>
-
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

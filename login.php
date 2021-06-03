@@ -45,6 +45,7 @@ if(isset($_POST["log"]))
           $data=$dao->getData("*","tbl_custreg","cust_email='".$_POST["email"]."'");
           $_SESSION["cust_id"]=$data[0
           ]["cust_id"];
+          $_SESSION["username"]=$data[0]["cust_email"];
           $_SESSION["cust_name"]=$data[0]["cust_name"];
           $_SESSION["cust_email"]=$data[0]["cust_email"];
           $_SESSION["cust_phone"]=$data[0]["cust_phone"];
