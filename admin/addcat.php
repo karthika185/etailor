@@ -185,6 +185,19 @@ else
         background: #d0dfe8;
     }
 
+    #cattable
+    {
+        width: 50%;
+        border: 1px solid black;
+
+    }
+
+    #cattable tr td
+    {
+        line-height: 28px;
+
+    }
+
     @media (min-width: 568px) {
         form {
             width: 60%;
@@ -269,7 +282,20 @@ else
         </nav>
         <section class="section-1">
 
+            <?php
+            include("../dbconn.php");
+if(isset($_SESSION['msg']))
+{
+?>
+<div >
+<?php echo $_SESSION['msg'];
+      unset($_SESSION['msg']);
+ ?>
+</div>
+<?php
+}
 
+ ?>
 
             <center>
                 <p style="color: black;font-family:satisfy">CATEGORY</p>
@@ -291,9 +317,10 @@ else
              
             </form>
              <?php
-            $result=mysqli_query($conn,"SELECT cat_name FROM tbl_category");
+            $result=mysqli_query($conn,"SELECT * FROM tbl_category");
             ?>
-            <table>
+             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for category..">
+            <table id='cattable'>
                 <tr><th>CATEGORIES ADDED</th></tr>
                     <?php
                         if (mysqli_num_rows($result)>0) {
@@ -303,18 +330,43 @@ else
                                <tr>
 
                                <td><?php echo $row['cat_name'];?></td> 
+                               <td> <a href="deletecat.php?catid=<?php echo $row['cat_id'];  ?> "><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
                                 </tr>
 
-                               <td><?php echo $row['cat_name'];?></td>
-                               </tr>
+                               
+                               
 
                                <?php
                             }
                         }
                    ?>
             </table>
+            <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("cattable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
         </section>
+
       
     </div>
 
