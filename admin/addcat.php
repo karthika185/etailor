@@ -203,6 +203,26 @@ else
             width: 60%;
         }
     }
+
+    #myInput {
+    width: 180px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    }
+
+    /* When the input field gets focus, change its width to 100% */
+    #myInput:focus {
+    width: 50%;
+    }
+
+    #myInput
+    {
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+        border:solid 1px black;
+        padding:5px;
+    }
+
     </style>
 
 </head>
@@ -284,22 +304,22 @@ else
 
             <?php
             include("../dbconn.php");
-if(isset($_SESSION['msg']))
-{
-?>
-<div >
-<?php echo $_SESSION['msg'];
-      unset($_SESSION['msg']);
- ?>
-</div>
-<?php
-}
+            if(isset($_SESSION['msg']))
+            {
+            ?>
+            <div >
+            <?php echo $_SESSION['msg'];
+                unset($_SESSION['msg']);
+            ?>
+            </div>
+            <?php
+            }
 
- ?>
+            ?>
 
             <center>
-                <p style="color: black;font-family:satisfy">CATEGORY</p>
-            </center><br><br>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">CATEGORY</p>
+            </center><br>
 
             <form action="" method="post" class="decor">
                 <div class="form-left-decoration"></div>
@@ -319,8 +339,9 @@ if(isset($_SESSION['msg']))
              <?php
             $result=mysqli_query($conn,"SELECT * FROM tbl_category");
             ?>
-             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for category..">
-            <table id='cattable'>
+            <br><br>
+             <input class="form-control mr-sm-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for category..">
+            <br><br><table id='cattable'>
                 <tr><th>CATEGORIES ADDED</th></tr>
                     <?php
                         if (mysqli_num_rows($result)>0) {
@@ -332,9 +353,6 @@ if(isset($_SESSION['msg']))
                                <td><?php echo $row['cat_name'];?></td> 
                                <td> <a href="deletecat.php?catid=<?php echo $row['cat_id'];  ?> "><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
                                 </tr>
-
-                               
-                               
 
                                <?php
                             }
@@ -369,6 +387,14 @@ function myFunction() {
 
       
     </div>
+    <!-- Vendor JS Files -->
+  <script src="location : ../cust/asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="location : ../cust/asset/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="location : ../cust/asset/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="location : ../cust/asset/vendor/php-email-form/validate.js"></script>
+  <script src="location : ../cust/asset/vendor/purecounter/purecounter.js"></script>
+  <script src="location : ../cust/asset/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="location : ../cust/asset/vendor/waypoints/noframework.waypoints.js"></script>
 
 </body>
 

@@ -190,6 +190,29 @@ header('location:../login.php');
         white-space: nowrap;
         text-decoration: none;
     }
+
+    #myInput {
+    width: 200px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    }
+
+    /* When the input field gets focus, change its width to 100% */
+    #myInput:focus {
+    width: 80%;
+    }
+
+    #myInput
+    {
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        border:solid 1px black;
+        padding:5px;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     </style>
 </head>
 
@@ -271,14 +294,9 @@ header('location:../login.php');
         </nav>
         <section class="section-1">
             <center>
-                <p style="color: black;font-family:satisfy">CUSTOMER DETAILS</p>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">CUSTOMER DETAILS</p>
             </center><br><br>
-            <form action="" method="post" class="decor" enctype="multipart/form-data">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                <div class="form-left-decoration"></div>
-                <div class="form-right-decoration"></div>
-                <div class="circle"></div>
-                <div class="form-inner">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..."><br><br>
                     <?php 
 
 			require_once("../classes/DataAccess.class.php");

@@ -65,6 +65,148 @@ if(isset($_POST["btq_id"]))
         color: white;
     }
 
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #666;
+    }
+
+    input,
+    textarea {
+        outline: none;
+    }
+
+    .section-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: #f5d09a;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    form {
+        position: relative;
+        width: 80%;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration,
+    .form-right-decoration {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 20px;
+        background: #f5d09a;
+    }
+
+    .form-left-decoration {
+        bottom: 60px;
+        left: -30px;
+    }
+
+    .form-right-decoration {
+        top: 60px;
+        right: -30px;
+    }
+
+    .form-left-decoration:before,
+    .form-left-decoration:after,
+    .form-right-decoration:before,
+    .form-right-decoration:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration:before {
+        top: -20px;
+    }
+
+    .form-left-decoration:after {
+        top: 20px;
+        left: 10px;
+    }
+
+    .form-right-decoration:before {
+        top: -20px;
+        right: 0;
+    }
+
+    .form-right-decoration:after {
+        top: 20px;
+        right: 10px;
+    }
+
+    .circle {
+        position: absolute;
+        bottom: 80px;
+        left: -55px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .form-inner {
+        padding: 40px;
+    }
+
+    .form-inner input,
+    .form-inner textarea {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 20px;
+        background: #d0dfe8;
+    }
+
+    .form-inner textarea {
+        resize: none;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 20px;
+        border: none;
+        border-bottom: 4px solid #ffb03b;
+        background: #ffb03b;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .button:hover {
+        background: #ffb03b;
+    }
+
+    @media (min-width: 568px) {
+        form {
+            width: 60%;
+        }
+    }
+
     .btn {
         background: #ffb03b;
         color: #fff;
@@ -76,6 +218,29 @@ if(isset($_POST["btq_id"]))
         letter-spacing: 1px;
         transition: 0.3s;
         white-space: nowrap;
+        text-decoration: none;
+    }
+
+    #myInput {
+    width: 200px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    }
+
+    /* When the input field gets focus, change its width to 100% */
+    #myInput:focus {
+    width: 80%;
+    }
+
+    #myInput
+    {
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        border:solid 1px black;
+        padding:5px;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
     }
     </style>
 </head>
@@ -156,7 +321,10 @@ if(isset($_POST["btq_id"]))
             </ul>
         </nav>
         <section class="section-1">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+            <center>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">BOUTIQUE DETAILS</p>
+            </center><br><br>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."><br><br>
             <?php
             require_once("../classes/DataAccess.class.php");
             $dao = new DataAccess();
@@ -185,7 +353,7 @@ if(isset($_POST["btq_id"]))
                 {
                     ?>
 
-            <table>
+            <table id="myTable">
                 <tr>
                     <th>Boutique Name</th>
                     <th>Owner Name</th>
@@ -200,7 +368,6 @@ if(isset($_POST["btq_id"]))
                         {
                         ?>
                 <form method="post">
-                     <table id="myTable">
                     <tr>
                         <input type="hidden" name="id" value="<?php echo $btq["btq_id"];?>">
                         <td><?php echo $btq["btq_name"]; ?></td>
@@ -261,7 +428,7 @@ function myFunction() {
                     echo "<h3>No boutiques found ".$dao->getErrors()."</h3>";
                 }
                 ?>
-            <br><br><br><br><a href="printBoutique.php">PRINT</a>
+            <br><br><br><br><a href="printBoutique.php" class="btn">PRINT</a>
         </section>
     </div>
 </body>
