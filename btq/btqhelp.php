@@ -31,7 +31,7 @@ mysqli_close($conn);
 <head>
 	<title>e-Tailoring</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
     table {
         border-collapse: collapse;
@@ -45,25 +45,12 @@ mysqli_close($conn);
     }
 
     tr:nth-child(even) {
-        background-color: #fff;
+        background-color: #f2f2f2
     }
 
     th {
         background-color: #ffb03b;
         color: white;
-    }
-
-    .btn {
-        background: #ffb03b;
-        color: #fff;
-        border-radius: 30px;
-        margin: 0 0 0 20px;
-        padding: 5px 20px;
-        font-size: 13px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        transition: 0.3s;
-        white-space: nowrap;
     }
 
     * {
@@ -89,7 +76,7 @@ mysqli_close($conn);
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px 20px 10px 10px;
+        padding: 20px;
         background: #f5d09a;
     }
 
@@ -204,8 +191,22 @@ mysqli_close($conn);
 
     @media (min-width: 568px) {
         form {
-            width: 80%;
+            width: 60%;
         }
+    }
+
+    .btn {
+        background: #ffb03b;
+        color: #fff;
+        border-radius: 30px;
+        margin: 0 0 0 20px;
+        padding: 5px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        transition: 0.3s;
+        white-space: nowrap;
+        text-decoration: none;
     }
     </style>
 </head>
@@ -276,10 +277,12 @@ mysqli_close($conn);
 				</li>
 			</ul>
 		</nav>
-		<section clss="section-1">
-			<form action="" method="post" class="decor" enctype="multipart/form-data">
-			<center><p style="color: black;font-family:satisfy">HELP</p></center>
-                <div class="form-left-decoration"></div>
+		<section class="section-1">
+        <form action="" method="post" class="decor" enctype="multipart/form-data">
+            <center>
+                <p style="color: black;font-family:satisfy;">HELP</p>
+            </center>			
+            <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>
                 <div class="form-inner">
@@ -306,7 +309,7 @@ mysqli_close($conn);
                     </table>
                     <h5><font color="red"><?php if(isset($message)) { echo $message; } ?><h5>
                 </div>
-        </form>
+                </form>
 		</section>
 		
 	</div>

@@ -286,10 +286,10 @@ if(isset($_POST["add"]))
                     <label>MATERIAL NAME</label>
                     <?php echo $form->textBox("name",array("placeholder"=>"Material Name")); ?>
                     <?php echo $validator->error("name"); ?>
-                    <br><br><br>
+                    <br>
                     <label>Upload Picture</label>
                     <?php echo $form->fileField("pic",array("placeholder"=>"Upload Picture")); ?>
-                    <?php echo isset($msg_file)?$msg_file:""; ?>
+                    <?php echo isset($msg_file)?$msg_file:""; ?><br>
                     <label>Price per Metre</label>
                     <?php echo $form->textBox("price",array("placeholder"=>"Price")); ?>
                     <?php echo $validator->error("price"); ?>

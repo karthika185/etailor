@@ -12,7 +12,4 @@ if (isset($res)) {
 	header("location:addcat.php");
 }
 
-
-
-
 ?>

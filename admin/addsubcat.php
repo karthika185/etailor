@@ -197,6 +197,19 @@ if(isset($_POST["add"]))
         background: #ffb03b;
     }
 
+    #cattable
+    {
+        width: 50%;
+        border: 1px solid black;
+
+    }
+
+    #cattable tr td
+    {
+        line-height: 28px;
+
+    }
+
     @media (min-width: 568px) {
         form {
             width: 60%;
@@ -283,7 +296,7 @@ if(isset($_POST["add"]))
         </nav>
         <section class="section-1">
             <center>
-                <p style="color: black;font-family:satisfy">SUBCATEGORY</p>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">SUBCATEGORY</p>
             </center><br><br>
             <form action="" method="post" class="decor" enctype="multipart/form-data">
                 <div class="form-left-decoration"></div>
@@ -298,7 +311,7 @@ if(isset($_POST["add"]))
                     echo $form->dropDownList("cat_name",array("class"=>"form-input","select"),$cats,"Select Category");
                     ?><br><br><br>
                     <label>SUBCATEGORY NAME</label>
-                    <?php echo $form->textBox("subcategory_name",array("class"=>"field","placeholder"=>"SUBCATEGORY NAME")); ?><br><br>
+                    <?php echo $form->textBox("subcategory_name",array("class"=>"field","placeholder"=>"SUBCATEGORY NAME")); ?><br>
                     <label>SUBCATEGORY PICTURE</label>
                     <?php echo $form->fileField("subcategory_pic",array("placeholder"=>"SUBCATEGORY PICTURE")); ?>
                     
@@ -311,14 +324,13 @@ if(isset($_POST["add"]))
                 <center><h5><font color="red"><?php echo isset($msg)?$msg:"";?></font></h5></center>
             </form>
             <?php
-            $result=mysqli_query($conn,"SELECT tbl_category.cat_name, tbl_subcategory.subcat_name, tbl_subcategory.cat_id, tbl_subcategory.cat_id FROM tbl_category INNER JOIN tbl_subcategory ON tbl_category.cat_id=tbl_subcategory.cat_id");
-            ?>
-            <table>
+            $result=mysqli_query($conn,"SELECT tbl_category.cat_name, tbl_subcategory.subcat_name, tbl_subcategory.subcat_id, tbl_subcategory.cat_id FROM tbl_category INNER JOIN tbl_subcategory ON tbl_category.cat_id=tbl_subcategory.cat_id");
+            ?><br><br>
+            <table id="cattable">
                 <tr>
-                    <th>CATEGORIES ADDED</th>
-                    <th>SUBCATEGORIES</th>
+                    <th style="text-align:left">CATEGORY</th>
+                    <th style="text-align:left">SUBCATEGORY</th>
                 </tr>
-                <tr>
                     <?php
                         if (mysqli_num_rows($result)>0) {
                             while($row=mysqli_fetch_array($result))
@@ -327,6 +339,7 @@ if(isset($_POST["add"]))
                                <tr>
                                <td><?php echo $row['cat_name'];?></td>
                                <td><?php echo $row['subcat_name'];?></td> 
+                               <td> <a href="deletesubcat.php?subcatid=<?php echo $row['subcat_id'];  ?> "><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
                                 </tr>
                                <?php
                             }
