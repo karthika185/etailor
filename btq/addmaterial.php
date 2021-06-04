@@ -9,8 +9,8 @@ header('location:../login.php');
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
-$fields=array("name"=>"","pic"=>"","price"=>"","colors"=>"",);
-$rules=array("name"=>array("required"=>"","alphaspaceonly"=>""),"price"=>array("required"=>"","regexp"=>'/^[0-9]+$/'),"colors"=>array("required"=>""));
+$fields=array("name"=>"","pic"=>"","price"=>"");
+$rules=array("name"=>array("required"=>"","alphaspaceonly"=>""),"price"=>array("required"=>"","regexp"=>'/^[0-9]+$/'));
 $labels=array("name"=>"NAME");
 $validator=new FormValidator($rules,$labels);
 $form=new FormAssist($fields,$_POST);
@@ -26,7 +26,7 @@ if(isset($_POST["add"]))
 			$types=["image/jpg","image/png","image/jpeg"];
 			if($file_name=$upload->doUpload($_FILES["pic"],$types,1000,10,"../pics/materialpics"))
 			{
-				$data=array("mat_name"=>$_POST["name"],"mat_pic"=>$file_name,"mat_price"=>$_POST["price"],"mat_color"=>implode(",", $_POST["colors"]),"mat_status"=>"A","btq_id"=>$btq_id);
+				$data=array("mat_name"=>$_POST["name"],"mat_pic"=>$file_name,"mat_price"=>$_POST["price"],"mat_status"=>"A","btq_id"=>$btq_id);
 				if($dao->insert($data,"tbl_material")) 
 				{
 					
@@ -293,11 +293,6 @@ if(isset($_POST["add"]))
                     <label>Price per Metre</label>
                     <?php echo $form->textBox("price",array("placeholder"=>"Price")); ?>
                     <?php echo $validator->error("price"); ?>
-                    <label>Colors</label>
-                    <?php 
-					$colors=$dao->createOptions("col_name","col_code","tbl_color");
-					echo $form->checkBoxListColors("colors",array("class"=>"form-input"),$colors,true);?>
-                    <?php echo $validator->error("colors"); ?>
 
                     <input type="submit" name="add" />
                     <h4><?php echo isset($msg)?$msg:"";?></h4>

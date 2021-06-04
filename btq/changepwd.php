@@ -18,9 +18,15 @@ if (count($_POST) > 0)
     } 
 
 
-    else
+    else 
     {
         $message = "Current Password is not correct";
+    }
+    if ($_POST['newPassword']==$_POST['confirmPassword']) {
+        
+    }
+    else{
+        $message="Password do not match";
     }
     }
 
@@ -211,37 +217,7 @@ if (count($_POST) > 0)
 </head>
 
 <body>
-    <script>
-    function validatePassword() {
-        var currentPassword, newPassword, confirmPassword, output = true;
-
-        currentPassword = document.frmChange.currentPassword;
-        newPassword = document.frmChange.newPassword;
-        confirmPassword = document.frmChange.confirmPassword;
-
-        if (!currentPassword.value) {
-            currentPassword.focus();
-            document.getElementById("currentPassword").innerHTML = "required";
-            output = false;
-        } else if (!newPassword.value) {
-            newPassword.focus();
-            document.getElementById("newPassword").innerHTML = "required";
-            output = false;
-        } else if (!confirmPassword.value) {
-            confirmPassword.focus();
-            document.getElementById("confirmPassword").innerHTML = "required";
-            output = false;
-        }
-        if (newPassword.value != confirmPassword.value) {
-            newPassword.value = "";
-            confirmPassword.value = "";
-            newPassword.focus();
-            document.getElementById("confirmPassword").innerHTML = "not same";
-            output = false;
-        }
-        return output;
-    }
-    </script>
+            
     <input type="checkbox" id="checkbox">
     <header class="header">
         <h2 class="u-name">e<b>Tailoring</b>
@@ -337,7 +313,7 @@ if (count($_POST) > 0)
                             </td>
                         </tr>
                         <tr>
-                        <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>
+                        <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit" onblur="validatePassword()"></td>
                         </tr>
                     </table>
                     <h5><font color="red"><?php if(isset($message)) { echo $message; } ?><h5>
