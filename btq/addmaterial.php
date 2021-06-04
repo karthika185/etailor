@@ -9,7 +9,6 @@ header('location:../login.php');
 require_once("../classes/FormAssist.class.php");
 require_once("../classes/DataAccess.class.php");
 require_once("../classes/FormValidator.class.php");
-$rules=array("name"=>array("required"=>"","alphaspaceonly"=>""),"price"=>array("required"=>"","regexp"=>'/^[0-9]+$/'),"colors"=>array("required"=>""));
 $fields=array("name"=>"","pic"=>"","price"=>"");
 $rules=array("name"=>array("required"=>"","alphaspaceonly"=>""),"price"=>array("required"=>"","regexp"=>'/^[0-9]+$/'));
 $labels=array("name"=>"NAME");
