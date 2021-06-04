@@ -291,19 +291,19 @@ header('location:../login.php');
             </ul>
         </nav>
         <section class="section-1">
-            <?php
-            include("../dbconn.php");
-            use PHPMailer\PHPMailer\PHPMailer;
+        	<?php
+        	include("../dbconn.php");
+        	use PHPMailer\PHPMailer\PHPMailer;
             use PHPMailer\PHPMailer\Exception;
             require 'PHPMailer/src/Exception.php';
             require 'PHPMailer/src/PHPMailer.php';
             require 'PHPMailer/src/SMTP.php';
-            if (isset($_POST["bh_id"])) {
-                $id=$_POST["bh_id"];
-                $res=$_POST["res"];
-                $email=$_POST["bh_email"];
-                if (isset($_POST["submit"])) {
-                    $mail = new PHPMailer();
+            if (isset($_POST["ch_id"])) {
+            	$id=$_POST["ch_id"];
+            	$res=$_POST["res"];
+            	$email=$_POST["ch_mail"];
+            	if (isset($_POST["submit"])) {
+            		$mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->Mailer = "smtp";
                     $mail->SMTPDebug  = 0;  
@@ -329,45 +329,47 @@ header('location:../login.php');
                     else
                     {
                       echo "Email sent successfully";
-                      $query = "DELETE FROM tbl_btqhelp WHERE bh_id='$id'";
+                      $query = "DELETE FROM tbl_custhelp WHERE ch_id='$id'";
                       $sql=mysqli_query($conn,$query);
                     }
 
-                }
+            	}
             }
-            ?>
-            <center>
-                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">BOUTIQUE ENQUIRY</p>
+        	?>
+        	<center>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">CUSTOMER ENQUIRY</p>
             </center><br><br>
             <form method="post">
             <table>
-                <tr>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                    <th>Response</th>
-                    <th>Click</th>
-                </tr>
-                <?php
-                include("../dbconn.php");
-                $query="SELECT * FROM tbl_btqhelp";
-                $res=mysqli_query($conn,$query);
-                while($rows=mysqli_fetch_array($res))
-                {
-                ?>
-                <tr>
-                    <input type="hidden" name="bh_id" value="<?php echo $rows['bh_id'] ;?>"></input>
-                    <input type="hidden" name="bh_email" value="<?php echo $rows['bh_email'] ;?>"></input>
-                    <td><?php echo $rows['bh_email'];?></td>
-                    <td><?php echo $rows['bh_sub'];?></td>
-                    <td><?php echo $rows['bh_msg'];?></td>
-                    <td><input type="text" name="res"></td>
-                    <td><input type="submit" name="submit" value="send"></td>
-                </tr>
-                <?php
-            }
-            ?>      
-        </table>
+            	<tr>
+            		<th>Email</th>
+            		<th>Phone</th>
+            		<th>Subject</th>
+            		<th>Message</th>
+            		<th>Response</th>
+            		<th>Click</th>
+            	</tr>
+            	<?php
+            	include("../dbconn.php");
+            	$query="SELECT ch_id, ch_mail,ch_phn,ch_sub,ch_msg FROM tbl_custhelp";
+            	$res=mysqli_query($conn,$query);
+            	while($rows=mysqli_fetch_array($res))
+	            {
+	            ?>
+	            <tr>
+	            	<input type="hidden" name="ch_id" value="<?php echo $rows['ch_id'] ;?>"></input>
+	            	<input type="hidden" name="ch_mail" value="<?php echo $rows['ch_mail'] ;?>"></input>
+	                <td><?php echo $rows['ch_mail'];?></td>
+	                <td><?php echo $rows['ch_phn'];?></td>
+	                <td><?php echo $rows['ch_sub'];?></td>
+	                <td><?php echo $rows['ch_msg'];?></td>
+	                <td><input type="text" name="res"></td>
+	                <td><input type="submit" name="submit" value="send"></td>
+	            </tr>
+	            <?php
+	        }
+	        ?>		
+		</table>
         <?php 
         mysqli_close($conn);
         ?>

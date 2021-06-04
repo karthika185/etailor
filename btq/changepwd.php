@@ -277,9 +277,9 @@ if (count($_POST) > 0)
                     </a>
                 </li>
                 <li>
-                    <a href="addproduct.php">
+                    <a href="btqhelp.php">
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
-                        <span>Add Products</span>
+                        <span>Help</span>
                     </a>
                 </li>
                 <li>
