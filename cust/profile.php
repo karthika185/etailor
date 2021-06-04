@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $cust_id=$_SESSION["cust_id"];
@@ -51,8 +52,8 @@ $form=new FormAssist($fields,$_POST);
 <title>e-Tailoring</title>
   <link rel="stylesheet" href="custom.css">
 </head>
-
 <body>
+    
     <div class="center">
       <h1>Update Profile</h1>
       <form role="form" class="form-horizontal row" action="" method="post" class="decor" enctype="multipart/form-data">
