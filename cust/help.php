@@ -29,6 +29,9 @@ if (isset($_POST['submit']))
 	<link rel="stylesheet" href="custom.css">
 </head>
 <body>
+	<?php
+	include("custnav.html");
+	?>
 	<div class="center">
 		<h1>Help</h1>
 		<form method="post" class="decor" enctype="multipart/form-data">
