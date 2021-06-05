@@ -38,7 +38,7 @@
 <?php
   include("custnav.html");
   ?>
-  <div class="center">
+  <div class="center" style = "position:absolute; top:500px;">
     
       <h1>Global Request</h1>
   <form action="customiseform1.php" method="post" class="decor" enctype="multipart/form-data">

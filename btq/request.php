@@ -155,7 +155,28 @@ header('location:../login.php');
                 <td><a href="respond.php?respond=<?php echo $rows['custform_id']; ?>">respond</td>
             </tr>
             <?php
-        }
+            }
+
+            $query="SELECT tbl_custreg.cust_name,tbl_customiseform1.form_email,tbl_customiseform1.cust_id,tbl_customiseform1.form_phone,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_material.mat_name,tbl_customiseform1.form_measure,tbl_customiseform1.form_sug,tbl_customiseform1.form_id FROM tbl_customiseform1 INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform1.form_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform1.form_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform1.cust_id INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform1.form_mat";
+
+            $res=mysqli_query($conn,$query);
+            
+            while($rows=mysqli_fetch_array($res))
+            {
+            ?>
+            <tr>
+                <td><?php echo $rows['cust_name'];?></td>
+                <td><?php echo $rows['form_email'];?></td>
+                <td><?php echo $rows['form_phone'];?></td>
+                <td><?php echo $rows['cat_name'];?></td>
+                <td><?php echo $rows['subcat_name'];?></td>
+                <td><?php echo $rows['mat_name'];?></td>
+                <td><?php echo $rows['form_measure'];?></td>
+                <td><?php echo $rows['form_sug'];?></td>
+                <td><a href="respond.php?respond=<?php echo $rows['form_id']; ?>">respond</td>
+            </tr>
+            <?php
+            }
         ?>
         </table>
         <?php mysqli_close($conn);

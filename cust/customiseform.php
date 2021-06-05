@@ -70,7 +70,7 @@
   <?php
   include("custnav.html");
   ?>
-  <div class="center" style = "position:fixed;  top:500px;">
+  <div class="center" style = "position:absolute;  top:500px;">
     <br>
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
