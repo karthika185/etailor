@@ -70,7 +70,8 @@
   <?php
   include("custnav.html");
   ?>
-  <div class="center">
+  <div class="center" style = "position:fixed;  top:500px;">
+    <br>
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
     <div class="txt_field">
@@ -222,7 +223,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#name").on('change',function(){
+    $("#material").on('change',function(){
     $(".data").hide();
     $("#"+$(this).val()).fadeIn(700);
   });.change();
