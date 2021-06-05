@@ -8,10 +8,15 @@ $cust_email=$_SESSION["cust_email"];
 <html>
 <head>
 	<title>e-Tailoring</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="table.css">
 </head>
 <body>
+
 	<div class="filter">
+		<?php
+	include("custnav.html");
+	?>
 		
 	</div>
 	<table>
@@ -19,6 +24,8 @@ $cust_email=$_SESSION["cust_email"];
 			<th>Boutique Name</th>
 			<th>Date</th>
 			<th>Response</th>
+			<th>Payment</th>
+			<th>Decline</th>
 		</tr>
 		<?php
 		$query="SELECT tbl_btqreg.btq_name,tbl_respond.respond_date,tbl_respond.respond_id FROM tbl_respond INNER JOIN tbl_btqreg ON tbl_btqreg.btq_id=tbl_respond.respond_btqid";
@@ -31,6 +38,8 @@ $cust_email=$_SESSION["cust_email"];
                 <td><?php echo $rows['respond_date'];?></td>
                 
                 <td><a href="view.php?view=<?php echo $rows['respond_id']; ?>">view</td>
+                <td>Proceed to pay</td>
+                <td><i class="fa fa-trash" aria-hidden="true"></i></td>
             </tr>
             <?php
         }

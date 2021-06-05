@@ -35,7 +35,11 @@
   <link rel="stylesheet" href="custom.css">
 </head>
 <body>
+<?php
+  include("custnav.html");
+  ?>
   <div class="center">
+    
       <h1>Global Request</h1>
   <form action="customiseform1.php" method="post" class="decor" enctype="multipart/form-data">
     <div class="txt_field">

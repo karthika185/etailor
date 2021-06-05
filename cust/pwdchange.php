@@ -31,6 +31,9 @@ if (count($_POST) > 0)
 	<link rel="stylesheet" href="custom.css">
 </head>
 <body>
+	<?php
+	include("custnav.html");
+	?>
 	<div class="center">
 		<h1>Change Password</h1>
 		<form action="" method="post" class="decor" enctype="multipart/form-data">

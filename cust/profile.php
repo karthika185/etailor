@@ -53,7 +53,9 @@ $form=new FormAssist($fields,$_POST);
   <link rel="stylesheet" href="custom.css">
 </head>
 <body>
-    
+    <?php
+    include("custnav.html");
+    ?>
     <div class="center">
       <h1>Update Profile</h1>
       <form role="form" class="form-horizontal row" action="" method="post" class="decor" enctype="multipart/form-data">

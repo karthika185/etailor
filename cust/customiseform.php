@@ -36,8 +36,40 @@
 <head>
   <title>e-Tailoring</title>
   <link rel="stylesheet" href="custom.css">
+  <style type="text/css">
+    .content{
+      margin: 30px 0;
+    }
+    .content .data{
+      padding: 25px;
+      background-color: #fff;
+      border: 2px solid #8bc34a;
+      border-radius: 8px;
+    }
+    .content p{
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid gainsboro;
+    }
+    .content p:last-child{
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .content p span{
+      float: right;
+      font-weight: normal;
+    }
+    .data{
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
+  <?php
+  include("custnav.html");
+  ?>
   <div class="center">
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
@@ -116,6 +148,22 @@
     <select name=material id=material>
     <option value=""> Select Material</option>
   </select>
+    <?php
+    include("../dbconn.php");
+    $sql="SELECT * FROM tbl_material";
+    $res=mysqli_query($conn,$sql);
+    while($rows=mysqli_fetch_array($res))
+            {
+    ?>
+    <div class="content">
+   <div id="<?php echo $rows["mat_id"];?>" class="data">
+    <p><b>Material Name</b><span><?php echo $rows["mat_name"]?></span></p>
+    <p><b>Material Price per metre</b><span><?php echo $rows["mat_price"]?></span></p>
+    <?php
+  }
+  ?>
+  </div>
+</div>
   <span></span>
   </div>
   <div class="txt_field">
@@ -171,5 +219,14 @@
   </script>
 </form>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#name").on('change',function(){
+    $(".data").hide();
+    $("#"+$(this).val()).fadeIn(700);
+  });.change();
+});
+</script>
 </body>
 </html>
