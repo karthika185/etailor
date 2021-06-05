@@ -46,6 +46,7 @@
   include("custnav.html");
   ?>
   <div class="center" style = "position:absolute;  top:500px;">
+
     
       <h1>Global Request</h1>
   <form action="customiseform1.php" method="post" class="decor" enctype="multipart/form-data">
@@ -100,7 +101,7 @@
     <option value="">Select Subcategory</option>
   </select>
   <span></span>
-   </div>
+   </div><br>
   <div class="txt_field">
     <input type="text" name="material" required>
     <span></span>
