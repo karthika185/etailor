@@ -8,7 +8,7 @@
 body{
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg,#ffb03b, #706350);
+  background: linear-gradient(120deg,#ffb03b, #ffb03b);
   height: 100vh;
   overflow: visible;
 }
