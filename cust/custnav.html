@@ -78,7 +78,7 @@
     display: block;
   }
   .navbar ul {
-    display: none;
+    display: flex;
   }
 }
 .navbar-mobile {
@@ -95,7 +95,7 @@
 }
 
 .navbar-mobile .mobile-nav-toggle {
-  position: absolute;
+  position: relative;
   top: 15px;
   right: 15px;
 }
@@ -124,15 +124,11 @@
   position: relative;
 }
 
-
-
-
   </style>
 </head>
 <body>
 
-<center>
-<nav id="navbar" class="navbar">
+<nav id="navbar" class="navbar ">
         <ul>
           <li><a class="nav-link" href="cust_home.php">Home</a></li>
           <li><a class="nav-link" href="profile.php">Profile</a></li>
@@ -147,6 +143,5 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-      </center>
       </body>
 </html>

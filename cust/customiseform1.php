@@ -34,7 +34,7 @@
   <title>e-Tailoring</title>
   <link rel="stylesheet" href="custom.css">
 </head>
-<body>
+<body class="overflow-auto">
 <?php
   include("custnav.html");
   ?>

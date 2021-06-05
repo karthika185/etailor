@@ -10,14 +10,14 @@ body{
   padding: 0;
   background: linear-gradient(120deg,#ffb03b, #706350);
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 .center{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 500px;
   background: white;
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
@@ -101,17 +101,4 @@ input[type="submit"]{
 input[type="submit"]:hover{
   border-color: #ffb03b;
   transition: .5s;
-}
-.signup_link{
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: #666666;
-}
-.signup_link a{
-  color: #ffb03b;
-  text-decoration: none;
-}
-.signup_link a:hover{
-  text-decoration: underline;
 }

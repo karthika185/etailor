@@ -66,7 +66,7 @@
   </style>
 </head>
 
-<body>
+<body class="overflow-auto">
   <?php
   include("custnav.html");
   ?>
