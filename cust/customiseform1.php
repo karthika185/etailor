@@ -93,7 +93,7 @@
     <option value="">Select Subcategory</option>
   </select>
   <span></span>
-   </div>
+   </div><br>
   <div class="txt_field">
     <input type="text" name="material">
     <span></span>

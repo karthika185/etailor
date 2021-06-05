@@ -37,9 +37,6 @@
   <title>e-Tailoring</title>
   <link rel="stylesheet" href="custom.css">
   <style type="text/css">
-    .content{
-      margin: 30px 0;
-    }
     .content .data{
       padding: 25px;
       background-color: #fff;
@@ -60,9 +57,6 @@
       float: right;
       font-weight: normal;
     }
-    .data{
-      display: none;
-    }
   </style>
 </head>
 
@@ -70,7 +64,7 @@
   <?php
   include("custnav.html");
   ?>
-  <div class="center" style = "position:absolute;  top:500px;">
+  <div class="center" style = "position:absolute;  top:600px;">
     <br>
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
@@ -148,10 +142,10 @@
      <label>Material</label>
     <select name=material id=material>
     <option value=""> Select Material</option>
-  </select>
+  </select><br><br>
     <?php
     include("../dbconn.php");
-    $sql="SELECT * FROM tbl_material";
+    $sql="SELECT * FROM tbl_material WHERE mat_id=3";
     $res=mysqli_query($conn,$sql);
     while($rows=mysqli_fetch_array($res))
             {
