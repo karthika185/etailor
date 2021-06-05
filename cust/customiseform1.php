@@ -3,6 +3,10 @@
   $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
+  if(!isset($_SESSION['cust_name']))
+{
+    header('location:../login.php');
+}
   $conn=mysqli_connect('localhost', 'root', '','etailor');
   if (isset($_POST['submit']))
   {
@@ -18,7 +22,7 @@
    VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
   if (mysqli_query($conn,$sql))
    {
-     echo "New record created successfully !";
+     echo "Your request was sent successfully !";
    }
    else
    {
@@ -33,12 +37,15 @@
 <head>
   <title>e-Tailoring</title>
   <link rel="stylesheet" href="custom.css">
+  <script type="text/javascript">
+    
+  </script>
 </head>
 <body class="overflow-auto">
 <?php
   include("custnav.html");
   ?>
-  <div class="center">
+  <div class="center" style = "position:absolute;  top:500px;">
     
       <h1>Global Request</h1>
   <form action="customiseform1.php" method="post" class="decor" enctype="multipart/form-data">
@@ -74,7 +81,7 @@
     </div>
    <div class="drop">
     <label>Category</label>
-     <select id="category" name="category">
+     <select id="category" name="category" required>
     <option value="">Select Category</option>
     <?php
     require "config.php";
@@ -89,28 +96,28 @@
    </div>
    <div class="drop">
     <label>Subcategory</label>
-     <select name=sub-category id=sub-category>
+     <select name=sub-category id=sub-category required>
     <option value="">Select Subcategory</option>
   </select>
   <span></span>
    </div>
   <div class="txt_field">
-    <input type="text" name="material">
+    <input type="text" name="material" required>
     <span></span>
     <label>Do you have any fabric suggestion?</label>
   </div>
   <div class="txt_field">
-    <input type="text" name="measurements">
+    <input type="text" name="measurements" required>
     <span></span>
     <label>Measurements</label>
   </div>
   <div class="txt_field">
-    <input type="text" name="suggestion">
+    <input type="text" name="suggestion" required>
     <span></span>
     <label>Suggestion</label>
   </div>
   <div class="txt_field">
-    <input type="date" name="date">
+    <input type="date" name="date" value="" required>
     <span></span>
     <label>Date</label>
   </div>

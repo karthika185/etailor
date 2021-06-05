@@ -17,7 +17,6 @@ header('location:../login.php');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-    <style>
     table {
         border-collapse: collapse;
         width: 100%;

@@ -10,6 +10,12 @@ if (count($_POST) > 0)
 {
     $result = mysqli_query($conn, "SELECT *from tbl_login WHERE username='" . $_SESSION["username"] . "'");
     $row = mysqli_fetch_array($result);
+    if ($_POST['newPassword']==$_POST['confirmPassword']) {
+        
+    }
+    else{
+        $message="Password do not match";
+    }
     if ($_POST["currentPassword"] == $row["password"])
     {
         mysqli_query($conn, "UPDATE tbl_login set password='" . $_POST["newPassword"] . "' WHERE username='" . $_SESSION["username"] . "'");
@@ -41,7 +47,7 @@ if (count($_POST) > 0)
 			<div class="txt_field">
 				<input type="password" name="currentPassword" >
                 <span></span>
-                <label><br>CURRENT PASSWORD<h5>(if you are changing password for the first time otp will be your current password)</h5><br><br><br><br></label>
+                <label><br>CURRENT PASSWORD<h6>(if you are changing password for the first time otp will be your current password)</h6><br><br><br><br></label>
 			</div>
 			<div class="txt_field">
 				<input type="password" name="newPassword">

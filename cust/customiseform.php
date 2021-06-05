@@ -4,6 +4,10 @@
   $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
+  if(!isset($_SESSION['cust_name']))
+{
+    header('location:../login.php');
+}
   $conn=mysqli_connect('localhost', 'root', '','etailor');
   if (isset($_POST['submit']))
   {
@@ -21,7 +25,7 @@
    VALUES ('$cust_id','$boutique','$cust_email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
    if (mysqli_query($conn,$sql))
    {
-     echo "New record created successfully !";
+     echo "Your request was sent successfully !";
    }
    else
    {
@@ -70,7 +74,7 @@
   <?php
   include("custnav.html");
   ?>
-  <div class="center" style = "position:fixed;  top:500px;">
+  <div class="center" style = "position:absolute;  top:500px;">
     <br>
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
