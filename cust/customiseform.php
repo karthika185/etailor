@@ -57,6 +57,9 @@
       float: right;
       font-weight: normal;
     }
+    .data{
+      display: none;
+    }
   </style>
 </head>
 
