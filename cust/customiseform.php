@@ -20,8 +20,8 @@
     $measure=$_POST['measurements'];
     $sug=$_POST['suggestion'];
     $date=$_POST['date'];
-    $sql = "INSERT INTO tbl_customiseform (cust_id,custform_btq,custform_mail,custform_phn,custform_cat,custform_subcat,custform_mat,custform_measure,custform_sug,custform_date)
-   VALUES ('$cust_id','$boutique','$cust_email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
+    $sql = "INSERT INTO tbl_customiseform (cust_id,custform_btq,custform_mail,custform_phn,custform_cat,custform_subcat,custform_mat,custform_measure,custform_sug,custform_date,custform_status)
+   VALUES ('$cust_id','$boutique','$cust_email','$phn','$cat','$subcat','$mat','$measure','$sug','$date','0')";
    if (mysqli_query($conn,$sql))
    {
      echo "Your request was sent successfully !";
@@ -215,10 +215,9 @@
         },"json");
       });
     });
+    
   </script>
-</form>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $("#material").on('change',function(){
@@ -227,5 +226,8 @@
   });.change();
 });
 </script>
+</form>
+</div>
+
 </body>
 </html>

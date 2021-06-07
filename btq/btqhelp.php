@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
 	$mail=$_POST['email'];
 	$sub=$_POST['sub'];
 	$msg=$_POST['msg'];
-	$sql="INSERT INTO tbl_btqhelp(btq_id,bh_email,bh_sub,bh_msg) VALUES('$btq_id','$mail','$sub','$msg')";
+	$sql="INSERT INTO tbl_btqhelp(btq_id,bh_email,bh_sub,bh_msg,bh_status) VALUES('$btq_id','$mail','$sub','$msg','A')";
 	if (mysqli_query($conn,$sql)) {
 		echo "successfull!";
 	}
@@ -224,59 +224,54 @@ mysqli_close($conn);
 	<div class="body">
 		<nav class="side-bar">
 			<div class="user-p">
-				<img src="img/user.jpg">
 				<h4><?php echo $_SESSION["btq_name"];?></h4>
 			</div>
 			<ul>
-				<li>
+                <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
-				<li>
-					<a href="viewbtqprofile.php">
-						<i class="fa fa-desktop" aria-hidden="true"></i>
-						<span>Profile</span>
-					</a>
-				</li>
-				<li>
-					<a href="addmaterial.php">
-						<i class="fa fa-plus-square" aria-hidden="true"></i>
-						<span>Add Materials</span>
-					</a>
-				</li>
-				<li>
-					<a href="btqhelp.php">
-						<i class="fa fa-plus-square" aria-hidden="true"></i>
-						<span>Help</span>
-					</a>
-				</li>
-				<li>
-					<a href="request.php">
-						<i class="fa fa-check-square-o" aria-hidden="true"></i>
-						<span>Requests</span>
-					</a>
-				</li>
-				<li>
-					<a href="order.php">
-						<i class="fa fa-cog" aria-hidden="true"></i>
-						<span>Orders</span>
-					</a>
-				</li>
-				<li>
-					<a href="btqnot.php">
-						<i class="fa fa-bell" aria-hidden="true"></i>
-						<span>Notification</span>
-					</a>
-				</li>
-				<li>
-					<a href="../destroysession.php">
-						<i class="fa fa-power-off" aria-hidden="true"></i>
-						<span>Logout</span>
-					</a>
-				</li>
-			</ul>
+                <li>
+                    <a href="viewbtqprofile.php">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="addmaterial.php">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <span>Add Materials</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="btqhelp.php">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span>Help</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="order.php">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="../destroysession.php">
+                        <i class="fa fa-power-off" aria-hidden="true"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
 		</nav>
 		<section class="section-1">
         <form action="" method="post" class="decor" enctype="multipart/form-data">

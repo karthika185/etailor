@@ -329,7 +329,7 @@ header('location:../login.php');
                     else
                     {
                       echo "Email sent successfully";
-                      $query = "DELETE FROM tbl_custhelp WHERE ch_id='$id'";
+                      $query = "UPDATE tbl_custhelp SET ch_status='P' WHERE ch_id='$id'";
                       $sql=mysqli_query($conn,$query);
                     }
 
@@ -351,7 +351,7 @@ header('location:../login.php');
             	</tr>
             	<?php
             	include("../dbconn.php");
-            	$query="SELECT ch_id, ch_mail,ch_phn,ch_sub,ch_msg FROM tbl_custhelp";
+            	$query="SELECT ch_id, ch_mail,ch_phn,ch_sub,ch_msg FROM tbl_custhelp WHERE ch_status='A'";
             	$res=mysqli_query($conn,$query);
             	while($rows=mysqli_fetch_array($res))
 	            {

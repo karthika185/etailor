@@ -1,3 +1,4 @@
+
 <?php
  session_start();
   $cust_id=$_SESSION["cust_id"];
@@ -14,7 +15,7 @@ if (isset($_POST['submit']))
 	$phn=$_POST['phn'];
 	$sub=$_POST['sub'];
 	$msg=$_POST['msg'];
-	$sql="INSERT INTO tbl_custhelp(cust_id,ch_mail,ch_phn,ch_sub,ch_msg) VALUES ('$cust_id','$mail','$phn','$sub','$msg')";
+	$sql="INSERT INTO tbl_custhelp(cust_id,ch_mail,ch_phn,ch_sub,ch_msg,ch_status) VALUES ('$cust_id','$mail','$phn','$sub','$msg','A')";
 	if (mysqli_query($conn,$sql)){
 		echo "successfull !";
 	}

@@ -21,6 +21,10 @@ if (isset($_POST['submit']))
    if (mysqli_query($conn,$sql))
    {
      echo "New record created successfully !";
+     $query="UPDATE tbl_customiseform set custform_status='1' WHERE
+      custform_id='" . $_GET["respond"] . "'";
+mysqli_query($conn,$query);
+
    }
    else
    {
@@ -40,6 +44,53 @@ if (isset($_POST['submit']))
     <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+        function metre()
+              {
+              var n=document.getElementById("mtr");
+              var e=/^[0-9]+$/;;
+              if(n.value == "")
+              {
+                document.getElementById("span1").innerHTML = "<span class='error'>Please Total Metre</span>";
+                    return false;
+              }
+              else if(!n.value.match(e))
+              {
+                document.getElementById("span1").innerHTML = "<span class='error'>Enter only numbers</span>";
+                    return false;
+              }
+               else if(n4.value.match(p))
+            {
+              document.getElementById("span1").innerHTML = "<span class='error'></span>";
+                  return true;
+            }
+              
+              }
+              function cost()
+              {
+              var n=document.getElementById("tot");
+              var e=/^[0-9]+$/;;
+              if(n.value == "")
+              {
+                document.getElementById("span2").innerHTML = "<span class='error'>Please enter total cost</span>";
+                    return false;
+              }
+              else if(!n.value.match(e))
+              {
+                document.getElementById("span2").innerHTML = "<span class='error'>Enter valid cost</span>";
+                    return false;
+              }
+              else if(n4.value.match(p))
+            {
+              document.getElementById("span1").innerHTML = "<span class='error'></span>";
+                  return true;
+            }
+              
+              
+              
+              }
+              
+    </script>
     <style>
     table {
         border-collapse: collapse;
@@ -236,14 +287,20 @@ if (isset($_POST['submit']))
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -255,28 +312,19 @@ if (isset($_POST['submit']))
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requests</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
+                
+                
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -341,17 +389,17 @@ if (isset($_POST['submit']))
                         </tr>
                         <tr>
                             <td><label>TOTAL METRE</label></td>
-                               <td><input type="text" name= "mtr" id="mtr" value= ""></span></td>
+                               <td><input type="text" name= "mtr" id="mtr" value= "" onblur="metre()" required><span id="span1"></span></td>
                             </td>
                         </tr>
                         <tr>
                             <td><label>TOTAL COST</label></td>
-                               <td><input type="text" name= "tot" id="tot" value="" ></span></td>
+                               <td><input type="text" name= "tot" id="tot" value="" onblur="cost()" required><span id="span2"></span></td>
                             </td>
                         </tr>
                         <tr>
                             <td><label>DATE</label></td>
-                               <td><input type="date" name= "date" id="date" value="" ></span></td>
+                               <td><input type="date" name= "date" id="theDate" value=""  required></span></td>
                             </td>
                         </tr>
                     </table>

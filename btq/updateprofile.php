@@ -1,7 +1,7 @@
 <?php
 session_start();
 $btq_id=$_SESSION["btq_id"];
-var_dump($btq_id);
+
 if(!isset($_SESSION['btq_name']))
 {
 header('location:../login.php');
@@ -209,19 +209,24 @@ $form=new FormAssist($fields,$_POST);
     <div class="body">
         <nav class="side-bar">
             <div class="user-p">
-                <img src="img/user.jpg">
                 <h4><?php echo $_SESSION["btq_name"];?></h4>
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -233,28 +238,18 @@ $form=new FormAssist($fields,$_POST);
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requets</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -274,19 +269,24 @@ $form=new FormAssist($fields,$_POST);
                 <div class="form-inner">
                     <label>Boutique Name</label>
                     <?php echo $form->textBox("boutique_name",array("placeholder"=>"Boutique Name","class"=>"form-control")); ?>
-                    <font color=red size=2><?php echo $validator->error("boutique_name"); ?>
+                    <font color=red><?php echo $validator->error("boutique_name"); ?></font>
+                    <br>
                         <label>Owner Name</label>
                         <?php echo $form->textBox("owner_name",array("placeholder"=>"Owner Name","class"=>"form-control")); ?>
                         <?php echo $validator->error("owner_name"); ?>
+                        <br>
                         <label>Email</label>
                         <?php echo $form->textBox("email",array("placeholder"=>"email","type"=>"email","class"=>"form-control","readonly"=>"readonly")); ?>
                         <?php echo $validator->error("email"); ?>
+                        <br>
                         <label>Address</label>
                         <?php echo $form->textArea("address",array("placeholder"=>"Address","class"=>"form-control")); ?>
                         <?php echo $validator->error("address"); ?>
+                        <br>
                         <label>Phone</label>
                         <?php echo $form->textBox("phone",array("placeholder"=>"Phone Number","class"=>"form-control")); ?>
                         <?php echo $validator->error("phone"); ?>
+                        <br>
                         <label>License Number</label>
                         <?php echo $form->textBox("license_no",array("placeholder"=>"License Number","class"=>"form-control","readonly"=>"readonly")); ?>
                         <?php echo $validator->error("license_no"); ?>

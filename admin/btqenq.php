@@ -329,7 +329,7 @@ header('location:../login.php');
                     else
                     {
                       echo "Email sent successfully";
-                      $query = "DELETE FROM tbl_btqhelp WHERE bh_id='$id'";
+                      $query = "UPDATE tbl_btqhelp SET bh_status='P' WHERE bh_id='$id'";
                       $sql=mysqli_query($conn,$query);
                     }
 
@@ -350,7 +350,7 @@ header('location:../login.php');
                 </tr>
                 <?php
                 include("../dbconn.php");
-                $query="SELECT * FROM tbl_btqhelp";
+                $query="SELECT * FROM tbl_btqhelp WHERE bh_status='A'";
                 $res=mysqli_query($conn,$query);
                 while($rows=mysqli_fetch_array($res))
                 {

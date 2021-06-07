@@ -17,6 +17,16 @@
     <link href="index/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="index/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="index/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <style type="text/css">
+    	.button{
+    		background: #ffb03b;
+    		border: 0;
+    		padding: 10px 24px;
+    		transition: 0.4s;
+    		border-radius: 50px;
+    	}
+    </style>
+    
 </head>
 <body>
 	 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -26,8 +36,7 @@
 	 		</div>
 	 		<nav id="navbar" class="navbar order-last order-lg-0">
 	 			<ul>
-	 				<li><a class="nav-link scrollto" href="#contact">Help</a></li>
-          			<li><a class="nav-link scrollto" href="#about">About Us</a></li>
+	 				
 	 			
 	 		<li class="dropdown"><a href="#"><span><h4  class="signup-signin-btn scrollto">Register/Login here</h4></span> </a>
 	 			<ul>
@@ -63,9 +72,41 @@
 	 		<div class="container">
 	 			<div class="section-title">
 	 				<h2>Contact <span>Us</span></h2>
-          			<p>You will get mails for your queries</p>
+          			
 	 			</div>
-	 			
+	 			<form method="post">
+	 				<?php
+	 				include("dbconn.php");
+	 				if (isset($_POST['submit'])) {
+	 				$email=$_POST["email"];
+	 				$sub=$_POST["sub"];
+	 				$msg=$_POST["msg"];
+	 				$sql="INSERT INTO tbl_guest(guest_email,guest_subject,guest_message,guest_status) VALUES('$email','$sub','$msg','A')";
+	 				if(mysqli_query($conn,$sql)){
+	 					echo "successfull !";
+	 				}
+	 				else
+	 				{
+	 					echo "Error: " . $sql . " " . mysqli_error($conn);;
+	 				}
+	 				 mysqli_close($conn);
+	 			}
+	 				?>
+	 				<div class="row">
+	 					<div class="col-lg-4 col-md-6 form-group">
+	 						<input type="text" name="email" id="email" class="form-control" placeholder="Your email"></div>
+	 					<div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+	 						<input type="text" name="sub" id="sub" placeholder="Your Subject" class="form-control">
+	 					</div>
+	 					<div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+	 						<input type="text" name="msg" id="msg" placeholder="Your Message" class="form-control">
+	 					</div>
+	 					<div class="text-center">
+	 						<br>
+	 					<input type="submit" name="submit" id="submit" value="submit" class="button">
+	 					</div>
+	 				</div>
+	 			</form>
 	 		</div>
 	 	</section>
 	 	

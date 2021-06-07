@@ -32,7 +32,7 @@ if(!isset($_SESSION['cust_name']))
 			<th>Decline</th>
 		</tr>
 		<?php
-		$query="SELECT tbl_btqreg.btq_name,tbl_respond.respond_date,tbl_respond.respond_id FROM tbl_respond INNER JOIN tbl_btqreg ON tbl_btqreg.btq_id=tbl_respond.respond_btqid";
+		$query="SELECT tbl_btqreg.btq_name,tbl_respond.respond_date,tbl_respond.respond_id,tbl_respond.respond_cost FROM tbl_respond INNER JOIN tbl_btqreg ON tbl_btqreg.btq_id=tbl_respond.respond_btqid";
 		$res=mysqli_query($conn,$query);
 		while($rows=mysqli_fetch_array($res))
             {
@@ -42,8 +42,9 @@ if(!isset($_SESSION['cust_name']))
                 <td><?php echo $rows['respond_date'];?></td>
                 
                 <td><a href="view.php?view=<?php echo $rows['respond_id']; ?>">view</td>
-                <td>Proceed to pay</td>
-                <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                <td><a href="ordersummary.php?id=<?php echo $rows['respond_id'] ?>">Proceed to pay</a></td>
+                <td> <a href="deletenotify.php?respond_id=<?php echo $rows['respond_id'];  ?> "><i class="fa fa-trash" aria-hidden="true"></i></</a> </td>
+               
             </tr>
             <?php
         }

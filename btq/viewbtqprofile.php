@@ -48,6 +48,147 @@ header('location:../login.php');
         transition: 0.3s;
         white-space: nowrap;
     }
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #666;
+    }
+
+    input,
+    textarea {
+        outline: none;
+    }
+
+    .section-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px 10px 10px;
+        background: #f5d09a;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    form {
+        position: relative;
+        width: 80%;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration,
+    .form-right-decoration {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 20px;
+        background: #f5d09a;
+    }
+
+    .form-left-decoration {
+        bottom: 60px;
+        left: -30px;
+    }
+
+    .form-right-decoration {
+        top: 60px;
+        right: -30px;
+    }
+
+    .form-left-decoration:before,
+    .form-left-decoration:after,
+    .form-right-decoration:before,
+    .form-right-decoration:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        border-radius: 30px;
+        background: #fff;
+    }
+
+    .form-left-decoration:before {
+        top: -20px;
+    }
+
+    .form-left-decoration:after {
+        top: 20px;
+        left: 10px;
+    }
+
+    .form-right-decoration:before {
+        top: -20px;
+        right: 0;
+    }
+
+    .form-right-decoration:after {
+        top: 20px;
+        right: 10px;
+    }
+
+    .circle {
+        position: absolute;
+        bottom: 80px;
+        left: -55px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .form-inner {
+        padding: 40px;
+    }
+
+    .form-inner input,
+    .form-inner textarea {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 20px;
+        background: #d0dfe8;
+    }
+
+    .form-inner textarea {
+        resize: none;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 20px;
+        border: none;
+        border-bottom: 4px solid #ffb03b;
+        background: #ffb03b;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .button:hover {
+        background: #ffb03b;
+    }
+
+    @media (min-width: 568px) {
+        form {
+            width: 80%;
+        }
+    }
     </style>
 </head>
 
@@ -64,19 +205,25 @@ header('location:../login.php');
     <div class="body">
         <nav class="side-bar">
             <div class="user-p">
-                <img src="img/user.jpg">
+                
                 <h4><?php echo $_SESSION["btq_name"];?></h4>
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -88,28 +235,18 @@ header('location:../login.php');
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requests</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -122,7 +259,13 @@ header('location:../login.php');
 
 
    
-        <section>
+        <section class="section-1">
+            <p style="color: black; font-family:satisfy;">PROFILE</p>
+            <form  method="post" class="decor">
+                <div class="form-left-decoration"></div>
+                <div class="form-right-decoration"></div>
+                <div class="circle"></div>
+                <div class="form-inner">
             <?php 
 			require_once("../classes/DataAccess.class.php");
 			$dao = new DataAccess();
@@ -182,6 +325,7 @@ header('location:../login.php');
 
 
 		?>
+    </form>
         </section>
 
    </div>
