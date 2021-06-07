@@ -293,7 +293,7 @@ header('location:../login.php');
             </tr>
             <?php
             include("../dbconn.php");
-            $query="SELECT tbl_custreg.cust_name,tbl_customiseform.custform_mail,tbl_customiseform.cust_id,tbl_customiseform.custform_phn,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_material.mat_name,tbl_customiseform.custform_measure,tbl_customiseform.custform_sug,tbl_customiseform.custform_id FROM tbl_customiseform INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform.custform_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform.custform_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform.cust_id INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_btq = '$btq_id'";
+            $query="SELECT tbl_custreg.cust_name,tbl_customiseform.custform_mail,tbl_customiseform.cust_id,tbl_customiseform.custform_phn,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_material.mat_name,tbl_customiseform.custform_measure,tbl_customiseform.custform_sug,tbl_customiseform.custform_id FROM tbl_customiseform INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform.custform_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform.custform_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform.cust_id INNER JOIN tbl_material ON tbl_material.mat_id=tbl_customiseform.custform_mat WHERE custform_btq = '$btq_id' AND custform_status = 0";
 
             $res=mysqli_query($conn,$query);
             
