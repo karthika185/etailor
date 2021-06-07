@@ -1,9 +1,12 @@
-
 <?php
   session_start();
   $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
+  if(!isset($_SESSION['cust_name']))
+{
+    header('location:../login.php');
+}
   $conn=mysqli_connect('localhost', 'root', '','etailor');
   if (isset($_POST['submit']))
   {
@@ -17,11 +20,11 @@
     $measure=$_POST['measurements'];
     $sug=$_POST['suggestion'];
     $date=$_POST['date'];
-    $sql = "INSERT INTO tbl_customiseform (cust_id,custform_btq,custform_mail,custform_phn,custform_cat,custform_subcat,custform_mat,custform_measure,custform_sug,custform_date)
-   VALUES ('$cust_id','$boutique','$cust_email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
+    $sql = "INSERT INTO tbl_customiseform (cust_id,custform_btq,custform_mail,custform_phn,custform_cat,custform_subcat,custform_mat,custform_measure,custform_sug,custform_date,custform_status)
+   VALUES ('$cust_id','$boutique','$cust_email','$phn','$cat','$subcat','$mat','$measure','$sug','$date','0')";
    if (mysqli_query($conn,$sql))
    {
-     echo "New record created successfully !";
+     echo "Your request was sent successfully !";
    }
    else
    {
@@ -68,6 +71,7 @@
   include("custnav.html");
   ?>
   <div class="center" style = "position:absolute;  top:600px;">
+
     <br>
       <h1>Choose Boutique</h1>
   <form action="customiseform.php" method="post" class="decor" enctype="multipart/form-data">
@@ -214,10 +218,9 @@
         },"json");
       });
     });
+    
   </script>
-</form>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $("#material").on('change',function(){
@@ -226,5 +229,8 @@
   });.change();
 });
 </script>
+</form>
+</div>
+
 </body>
 </html>

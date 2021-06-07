@@ -35,14 +35,20 @@ header('location:../login.php');
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -54,28 +60,18 @@ header('location:../login.php');
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requests</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>

@@ -15,18 +15,12 @@ if (count($_POST) > 0)
     {
         mysqli_query($conn, "UPDATE tbl_login set password='" . $_POST["newPassword"] . "' WHERE username='" . $_SESSION["username"] . "'");
         $message = "Password Changed";
-    } 
+    }
 
 
-    else 
+    else
     {
         $message = "Current Password is not correct";
-    }
-    if ($_POST['newPassword']==$_POST['confirmPassword']) {
-        
-    }
-    else{
-        $message="Password do not match";
     }
     }
 
@@ -35,7 +29,7 @@ if (count($_POST) > 0)
 <html>
 
 <head>
-    <title>e-Tailoring</title>
+    <title>boutique home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -217,7 +211,52 @@ if (count($_POST) > 0)
 </head>
 
 <body>
-            
+    <script>
+    function mypassword()
+  {
+  var n6=document.getElementById("newPassword");
+  var ps=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,}/;
+  if(n6.value == "")
+  {
+    document.getElementById("span1").innerHTML = "<span class='error'>Please enter a valid password</span>";
+   // txt7.focus();
+        return false;
+  }
+  if(!n6.value.match(ps))
+  {
+  document.getElementById("span1").innerHTML = "<span class='error'>This is not a valid Password. Please try again</span>";
+     document.getElementById("txt7").value="";
+      return false;
+  }
+  else if(n6.value.match(ps))
+    {
+      document.getElementById("span1").innerHTML = "<span class='error'></span>";
+          return false;
+    }
+  }
+  function mycpassword()
+  {
+  var n7=document.getElementById("newPassword");
+  var n8=document.getElementById("confirmPassword");
+  if(n8.value == "")
+  {
+    document.getElementById("span2").innerHTML = "<span class='error'>Please enter a valid password</span>";
+        return false;
+  }
+  if(n7.value==n8.value)
+  {
+
+  document.getElementById("span2").innerHTML = "<span class='error'></span>";
+      return false;
+  }
+  else {
+  document.getElementById("span2").innerHTML = "<span class='error'> Password Missmatch</span>";
+  document.getElementById("newPassword").value="";
+  document.getElementById("confirmPassword").value="";
+      return false;
+  }
+  }
+    </script>
     <input type="checkbox" id="checkbox">
     <header class="header">
         <h2 class="u-name">e<b>Tailoring</b>
@@ -230,19 +269,24 @@ if (count($_POST) > 0)
     <div class="body">
         <nav class="side-bar">
             <div class="user-p">
-                <img src="img/user.jpg">
                 <h4><?php echo $_SESSION["btq_name"];?></h4>
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -254,28 +298,18 @@ if (count($_POST) > 0)
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requests</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -284,7 +318,7 @@ if (count($_POST) > 0)
                 </li>
             </ul>
         </nav>
-  
+ 
     <section class="section-1">
         <form action="" method="post" class="decor" enctype="multipart/form-data">
 
@@ -302,18 +336,17 @@ if (count($_POST) > 0)
                         </tr>
                         <tr>
                             <td><label>NEW PASSWORD</label></td>
-                               <td><input type="password" name="newPassword" class="txtField" /><span id="newPassword"
-                            class="required"></span></td>
+                               <td><input type="password" name="newPassword" id ="newPassword" class="txtField" onblur="mypassword()" /><span id="span1"></span></td>
                             </td>
                         </tr>
                         <tr>
                             <td><label>CONFIRM PASSWORD</label></td>
-                               <td><input type="password" name="confirmPassword" class="txtField" /><span id="confirmPassword"
-                        class="required"></span></td>
+                               <td><input type="password" name="confirmPassword" id="confirmPassword" class="txtField" onblur="mycpassword()"/><span 
+                        id="span2"></span></td>
                             </td>
                         </tr>
                         <tr>
-                        <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit" onblur="validatePassword()"></td>
+                        <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>
                         </tr>
                     </table>
                     <h5><font color="red"><?php if(isset($message)) { echo $message; } ?><h5>
@@ -324,10 +357,3 @@ if (count($_POST) > 0)
 </body>
 
 </html>
-
-
-
-
-
-
-  

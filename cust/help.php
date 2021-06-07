@@ -1,8 +1,13 @@
+
 <?php
  session_start();
   $cust_id=$_SESSION["cust_id"];
   $cust_email=$_SESSION["cust_email"];
   $cust_phone=$_SESSION["cust_phone"];
+  if(!isset($_SESSION['cust_name']))
+{
+    header('location:../login.php');
+}
   include("../dbconn.php");
 if (isset($_POST['submit']))
 {
@@ -10,7 +15,7 @@ if (isset($_POST['submit']))
 	$phn=$_POST['phn'];
 	$sub=$_POST['sub'];
 	$msg=$_POST['msg'];
-	$sql="INSERT INTO tbl_custhelp(cust_id,ch_mail,ch_phn,ch_sub,ch_msg) VALUES ('$cust_id','$mail','$phn','$sub','$msg')";
+	$sql="INSERT INTO tbl_custhelp(cust_id,ch_mail,ch_phn,ch_sub,ch_msg,ch_status) VALUES ('$cust_id','$mail','$phn','$sub','$msg','A')";
 	if (mysqli_query($conn,$sql)){
 		echo "successfull !";
 	}
@@ -66,12 +71,12 @@ if (isset($_POST['submit']))
 			  <label>Phone Number</label>
 			</div>
 			<div class="txt_field">
-				<input type="text" name="sub">
+				<input type="text" name="sub" required>
 				<span></span>
 				<label>Subject</label>
 			</div>
 			<div class="txt_field">
-				<input type="text" name="msg">
+				<input type="text" name="msg" required>
 				<span></span>
 				<label>Message</label>
 			</div>

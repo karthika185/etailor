@@ -41,7 +41,7 @@ if (count($_POST) > 0)
 			<div class="txt_field">
 				<input type="password" name="currentPassword" >
                 <span></span>
-                <label><br>CURRENT PASSWORD<h5>(if you are changing password for the first time otp will be your current password)</h5><br><br><br><br></label>
+                <label><br>CURRENT PASSWORD<h6>(if you are changing password for the first time otp will be your current password)</h6><br><br><br><br></label>
 			</div>
 			<div class="txt_field">
 				<input type="password" name="newPassword">

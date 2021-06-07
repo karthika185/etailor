@@ -17,7 +17,6 @@ header('location:../login.php');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-    <style>
     table {
         border-collapse: collapse;
         width: 100%;
@@ -272,87 +271,89 @@ header('location:../login.php');
             </ul>
         </nav>
         <section class="section-1">
-            <p style="color: black; font-family:satisfy;">GUEST ENQUIRY</p>
-            <form action="responded.php" method="post" class="decor">
-                <div class="form-left-decoration"></div>
-                <div class="form-right-decoration"></div>
-                <div class="circle"></div>
-                <div class="form-inner">
+             <?php
+            include("../dbconn.php");
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\Exception;
+            require 'PHPMailer/src/Exception.php';
+            require 'PHPMailer/src/PHPMailer.php';
+            require 'PHPMailer/src/SMTP.php';
+            if (isset($_POST["guest_id"])) {
+                $id=$_POST["guest_id"];
+                $res=$_POST["res"];
+                $email=$_POST["guest_email"];
+                if (isset($_POST["submit"])) {
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->Mailer = "smtp";
+                    $mail->SMTPDebug  = 0;  
+                    $mail->SMTPAuth   = TRUE;
+                    $mail->SMTPSecure = "tls";
+                    $mail->Port       = 587;
+                    $mail->Host       = "smtp.gmail.com";
+                    $mail->Username   = "etailorsite@gmail.com";
+                    $mail->Password   = "etailor@123";
 
-                    <?php require_once("../classes/FormAssist.class.php");
-require_once("../classes/DataAccess.class.php");
-require_once("../classes/FormValidator.class.php");
-$dao=new DataAccess();
-if(isset($_POST["id"]))
-                {
-                  $id=$_POST["id"]; 
-                 $data2= $dao->getData("guest_email","tbl_guest","guest_id='$id'");
-                $email = $data2[0]["guest_email"];
+                    $mail->IsHTML(true);
+                    $mail->AddAddress($email, "smk");
+                    $mail->SetFrom("etailorsite@gmail.com", "eTailor");
+                    $mail->AddReplyTo("etailorsite@gmail.com", "eTailor");
+                    $mail->Subject = "Thank you for contacting e-Tailor";
+                    $content=$res;
+                    $mail->MsgHTML($content);
+                    if(!$mail->Send())
+                    {
+                      echo "Error while sending Email.";
+                      var_dump($mail);
+                    }
+                    else
+                    {
+                      echo "Email sent successfully";
+                      $query = "UPDATE tbl_guest SET guest_status='P' WHERE guest_id='$id'";
+                      $sql=mysqli_query($conn,$query);
+                    }
 
-                
-                 if(isset($_POST["responded"]))
-                  {
-                    var_dump($dao->lastQuery());
-                    $data["guest_status"]="B";
-                    //var_dump($dao->getErrors());
-                  }
-                  else
-                  {
-                    var_dump($dao->lastQuery());
-                    $msg="error";
-                    //var_dump($dao->getErrors());
-                  }
                 }
-            $fields=array("guest_name","guest_email","guest_subject","guest_message","guest_response","guest_id");
-            if($guestenquiry= $dao->getData($fields,"tbl_guest"))
-            {
-                //var_dump(students);
-                ?>`
-                    <table>
-                        <tr>
-
-                            <th>Name</th>
-                            <th>Email</th>
-
-                            <th>Subject</th>
-                            <th>Message</th>
-                            <th>Reply</th>
-                            <th>Clear</th>
-
-                        </tr>
-                        <?php
-                        foreach($guestenquiry as $guest)
-                        {
-                            ?>
-                        <tr>
-                            <input type="hidden" name="id" value="<?php echo $guest["guest_id"]; ?>"/>
-                            <td><?php echo $guest["guest_name"]; ?></td>
-                            <td><?php echo $guest["guest_email"]; ?></td>
-                            <td><?php echo $guest["guest_subject"]; ?></td>
-                            <td><?php echo $guest["guest_message"]; ?></td>
-                            <td><input type="text" name="response"></td>
-                            <td><a href="responded.php?guest_id=<?php echo $guest["guest_id"]; ?>">Responded</a></td>
-                            <h6><?php echo isset($msg)?$msg:"";?></h6>
-                        </tr>
-
-                        <?php
-                        }
-
-                        ?>
-
-                    </table>
-
-
-                    <?php
             }
-            else
-            {
-                echo "<h3>No guests found ".$dao->getErrors()."</h3>";
+            ?>
+            <center>
+                <p style="color: black;font-family:satisfy;border-radius: 15px;padding:10px;">GUEST ENQUIRY</p>
+            </center><br><br>
+            <form method="post">
+            <table>
+                <tr>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Response</th>
+                    <th>Click</th>
+                </tr>
+                <?php
+                include("../dbconn.php");
+                $query="SELECT * FROM tbl_guest WHERE guest_status='A'";
+                $res=mysqli_query($conn,$query);
+                while($rows=mysqli_fetch_array($res))
+                {
+                ?>
+                <tr>
+                   <input type="hidden" name="guest_id" value="<?php echo $rows['guest_id'] ;?>"></input>
+                    <input type="hidden" name="guest_email" value="<?php echo $rows['guest_email'] ;?>"></input> 
+                    <td><?php echo $rows['guest_email'];?></td>
+                    <td><?php echo $rows['guest_subject'];?></td>
+                    <td><?php echo $rows['guest_message'];?></td>
+                    <td><input type="text" name="res"></td>
+                    <td><input type="submit" name="submit" value="send"></td>
+                </tr>
+                <?php
             }
-
-
+            ?>      
+        </table>
+        <?php 
+        mysqli_close($conn);
         ?>
-            </form>
+
+            </table>
+
         </section>
     </div>
 

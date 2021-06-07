@@ -52,7 +52,7 @@ if(!isset($_SESSION['cust_name']))
           <li><a class="nav-link" href="notify.php">Notification</a></li>
           <li><a class="nav-link" href="customiseform1.php">Send Global Request</a></li>
           <li><a class="nav-link" href="customiseform.php">Send Boutique Request</a></li>
-          <li><a class="nav-link" href="#search">Search</a></li>
+          
 
           <li><a class="nav-link" href="help.php">Help</a></li>
           <li><a class="nav-link" href="pwdchange.php">Change Password</a></li>

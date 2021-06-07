@@ -219,19 +219,25 @@ if(isset($_POST["add"]))
     <div class="body">
         <nav class="side-bar">
             <div class="user-p">
-                <img src="img/user.jpg">
+               
                 <h4><?php echo $_SESSION["btq_name"];?></h4>
             </div>
             <ul>
                 <li>
+                    <a href="btqhome.php">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="viewbtqprofile.php">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -243,26 +249,15 @@ if(isset($_POST["add"]))
                 </li>
                 <li>
                     <a href="btqhelp.php">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Help</span>
                     </a>
                 </li>
-                <li>
-                    <a href="request.php">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span>Requets</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="order.php">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span>Orders</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="btqnot.php">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                        <span>Notification</span>
                     </a>
                 </li>
                 <li>
