@@ -282,7 +282,7 @@ mysqli_query($conn,$query);
     <div class="body">
         <nav class="side-bar">
             <div class="user-p">
-                <img src="img/user.jpg">
+                
                 <h4><?php echo $_SESSION["btq_name"];?></h4>
             </div>
             <ul>
