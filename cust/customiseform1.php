@@ -45,7 +45,8 @@
 <?php
   include("custnav.html");
   ?>
-  <div class="center" style = "position:absolute;  top:500px;">
+  <center><a href="measurement.html" target="_blank">Click here to know details about measurements</a></center>
+  <div class="center" style = "position:absolute;  top:550px;">
 
     
       <h1>Global Request</h1>

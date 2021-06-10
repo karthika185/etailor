@@ -39,7 +39,10 @@ if (empty($_POST['razorpay_payment_id']) === false)
 if ($success === true)
 {
     $html = "<p>Your payment was successful</p>
-             <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
+             <p>Payment ID: {$_POST['razorpay_payment_id']}</p>
+             <p> <a href='../cust/notify.php?status=paid'> Go back </a> </p>
+             ";
+
 }
 else
 {

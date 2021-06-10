@@ -303,12 +303,7 @@ if (count($_POST) > 0)
                     </a>
                 </li>
                 
-                <li>
-                    <a href="order.php">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span>Orders</span>
-                    </a>
-                </li>
+                
                 
                 <li>
                     <a href="../destroysession.php">
