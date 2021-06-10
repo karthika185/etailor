@@ -42,7 +42,7 @@ if(!isset($_SESSION['cust_name']))
                 <td><?php echo $rows['respond_date'];?></td>
                 
                 <td><a href="view.php?view=<?php echo $rows['respond_id']; ?>">view</td>
-                <td><a href="ordersummary.php?id=<?php echo $rows['respond_id'] ?>">Proceed to pay</a></td>
+                <td><a href="ordersummary.php?id=<?php echo $rows['respond_id'] ?>" target="_blank">Proceed to pay</a></td>
                 <td> <a href="deletenotify.php?respond_id=<?php echo $rows['respond_id'];  ?> "><i class="fa fa-trash" aria-hidden="true"></i></</a> </td>
                
             </tr>

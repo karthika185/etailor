@@ -65,12 +65,7 @@ header('location:../login.php');
                     </a>
                 </li>
                 
-                <li>
-                    <a href="order.php">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span>Orders</span>
-                    </a>
-                </li>
+               
                 
                 <li>
                     <a href="../destroysession.php">

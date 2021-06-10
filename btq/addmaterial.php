@@ -254,12 +254,7 @@ if(isset($_POST["add"]))
                     </a>
                 </li>
                 
-                <li>
-                    <a href="order.php">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span>Orders</span>
-                    </a>
-                </li>
+               
                 <li>
                     <a href="../destroysession.php">
                         <i class="fa fa-power-off" aria-hidden="true"></i>

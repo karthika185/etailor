@@ -70,7 +70,8 @@
   <?php
   include("custnav.html");
   ?>
-  <div class="center" style = "position:absolute;  top:600px;">
+  <center><a href="measurement.html" target="_blank">Click here to know details about measurements</a></center>
+  <div class="center" style = "position:absolute;  top:550px;">
 
     <br>
       <h1>Choose Boutique</h1>
@@ -169,17 +170,17 @@
   <span></span>
   </div>
   <div class="txt_field">
-    <input type="text" name="measurements">
+    <input type="text" name="measurements" required>
     <span></span>
     <label>Measurements</label>
   </div>
   <div class="txt_field">
-    <input type="text" name="suggestion">
+    <input type="text" name="suggestion" required>
     <span></span>
     <label>Suggestion</label>
   </div>
   <div class="txt_field">
-     <input type="date" name="date"></input>
+     <input type="date" name="date" required></input>
      <span></span>
      <label>Date</label>
   </div>
@@ -226,7 +227,7 @@
     $("#material").on('change',function(){
     $(".data").hide();
     $("#"+$(this).val()).fadeIn(700);
-  });.change();
+  }).change();
 });
 </script>
 </form>
