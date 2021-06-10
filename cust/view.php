@@ -28,7 +28,7 @@ $respond_id = $_GET["view"];
             $data.='<strong>Metre :'.$mtr.'<br/>';
             $data.='<strong>Cost :'.$cost.'<br/>';
             $data.='<strong>Date :'.$date.'<br/>';
-            `
+            
             $mpdf->WriteHTML($data);
             $mpdf->Output('myfile.pdf','D');
 ?>

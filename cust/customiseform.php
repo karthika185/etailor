@@ -152,23 +152,7 @@
     <select name=material id=material>
     <option value=""> Select Material</option>
   </select><br><br>
-    <?php
-    include("../dbconn.php");
-    $sql="SELECT * FROM tbl_material WHERE mat_id=3";
-    $res=mysqli_query($conn,$sql);
-    while($rows=mysqli_fetch_array($res))
-            {
-    ?>
-    <div class="content">
-   <div id="<?php echo $rows["mat_id"];?>" class="data">
-    <p><b>Material Name</b><span><?php echo $rows["mat_name"]?></span></p>
-    <p><b>Material Price per metre</b><span><?php echo $rows["mat_price"]?></span></p>
-    <?php
-  }
-  ?>
-  </div>
-</div>
-  <span></span>
+    
   </div>
   <div class="txt_field">
     <input type="text" name="measurements" required>

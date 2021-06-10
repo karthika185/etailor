@@ -31,10 +31,12 @@ if(isset($_POST["add"]))
 				if($dao->insert($data,"tbl_subcategory")) 
 				{
 					$msg="Success";
+					
 				}
 				else
 				{
 					$msg="Insertion failed";
+					
 				} 
 			}
 			else
