@@ -70,7 +70,8 @@
   <?php
   include("custnav.html");
   ?>
-  <center><a href="measurement.html" target="_blank">Click here to know details about measurements</a></center>
+  <center><a href="measurement.html" target="_blank"
+    >Click here to know details about measurements</a></center>
   <div class="center" style = "position:absolute;  top:550px;">
 
     <br>
