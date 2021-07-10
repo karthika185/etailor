@@ -293,6 +293,13 @@ mysqli_query($conn,$query);
                     </a>
                 </li>
                 <li>
+                    <a href="global.php">
+                        <i class="fa fa-plus-square
+                        " aria-hidden="true"></i>
+                        <span>Global Requests</span>
+                    </a>
+                </li>
+                <li>
                     <a href="changepwd.php">
                         <i class="fa fa-key" aria-hidden="true"></i>
                         <span>Change Password</span>

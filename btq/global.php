@@ -1,38 +1,23 @@
+
 <?php
 session_start();
-$username=$_SESSION["username"];
+$btq_id=$_SESSION["btq_id"];
+
 if(!isset($_SESSION['btq_name']))
 {
 header('location:../login.php');
 }
-$conn = mysqli_connect("localhost", "root", "", "etailor") or die("Connection Error: " . mysqli_error($conn));
 
-if (count($_POST) > 0)
-{
-    $result = mysqli_query($conn, "SELECT *from tbl_login WHERE username='" . $_SESSION["username"] . "'");
-    $row = mysqli_fetch_array($result);
-    if ($_POST["currentPassword"] == $row["password"])
-    {
-        mysqli_query($conn, "UPDATE tbl_login set password='" . $_POST["newPassword"] . "' WHERE username='" . $_SESSION["username"] . "'");
-        $message = "Password Changed";
-    }
-
-
-    else
-    {
-        $message = "Current Password is not correct";
-    }
-    }
 
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>boutique home</title>
+    <title>e-Tailoring</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>
+    <style type="text/css">
     table {
         border-collapse: collapse;
         width: 100%;
@@ -45,7 +30,7 @@ if (count($_POST) > 0)
     }
 
     tr:nth-child(even) {
-        background-color: #fff;
+        background-color: #f2f2f2
     }
 
     th {
@@ -211,52 +196,6 @@ if (count($_POST) > 0)
 </head>
 
 <body>
-    <script>
-    function mypassword()
-  {
-  var n6=document.getElementById("newPassword");
-  var ps=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,}/;
-  if(n6.value == "")
-  {
-    document.getElementById("span1").innerHTML = "<span class='error'>Please enter a valid password</span>";
-   // txt7.focus();
-        return false;
-  }
-  if(!n6.value.match(ps))
-  {
-  document.getElementById("span1").innerHTML = "<span class='error'>This is not a valid Password. Please try again</span>";
-     document.getElementById("txt7").value="";
-      return false;
-  }
-  else if(n6.value.match(ps))
-    {
-      document.getElementById("span1").innerHTML = "<span class='error'></span>";
-          return false;
-    }
-  }
-  function mycpassword()
-  {
-  var n7=document.getElementById("newPassword");
-  var n8=document.getElementById("confirmPassword");
-  if(n8.value == "")
-  {
-    document.getElementById("span2").innerHTML = "<span class='error'>Please enter a valid password</span>";
-        return false;
-  }
-  if(n7.value==n8.value)
-  {
-
-  document.getElementById("span2").innerHTML = "<span class='error'></span>";
-      return false;
-  }
-  else {
-  document.getElementById("span2").innerHTML = "<span class='error'> Password Missmatch</span>";
-  document.getElementById("newPassword").value="";
-  document.getElementById("confirmPassword").value="";
-      return false;
-  }
-  }
-    </script>
     <input type="checkbox" id="checkbox">
     <header class="header">
         <h2 class="u-name">e<b>Tailoring</b>
@@ -319,42 +258,57 @@ if (count($_POST) > 0)
                 </li>
             </ul>
         </nav>
- 
-    <section class="section-1">
-        <form action="" method="post" class="decor" enctype="multipart/form-data">
-
-            <center><p style="color: black;font-family:satisfy">CHANGE PASSWORD</p></center>
+        <section class="section-1">
+            <p style="color: black; font-family:satisfy;">REQUESTS</p>
+            <form action="responded.php" method="post" class="decor">
                 <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>
                 <div class="form-inner">
-                    <table>
-                        <tr>
-                            <td><label>CURRENT PASSWORD<h5>(if you are changing password for the first time otp will be your current password)</h5></label></td>
-                               <td> <input type="password" name="currentPassword" /><span
-                            id="currentPassword" class="required"></span></td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>NEW PASSWORD</label></td>
-                               <td><input type="password" name="newPassword" id ="newPassword" class="txtField" onblur="mypassword()" /><span id="span1"></span></td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>CONFIRM PASSWORD</label></td>
-                               <td><input type="password" name="confirmPassword" id="confirmPassword" class="txtField" onblur="mycpassword()"/><span 
-                        id="span2"></span></td>
-                            </td>
-                        </tr>
-                        <tr>
-                        <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>
-                        </tr>
-                    </table>
-                    <h5><font color="red"><?php if(isset($message)) { echo $message; } ?><h5>
-                </div>
-        </form>
+        <table>
+            <tr>
+                <th>customer name</th>
+                <th>customer email</th>
+                <th>customer phone</th>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Material</th>
+                <th>Measurements</th>
+                <th>Suggestion</th>
+                <th>Proceed</th>
+            </tr>
+            <?php
+            include("../dbconn.php");
+            
+            $query="SELECT tbl_custreg.cust_name,tbl_customiseform1.form_email,tbl_customiseform1.cust_id,tbl_customiseform1.form_phone,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_customiseform1.form_mat,tbl_customiseform1.form_measure,tbl_customiseform1.form_sug,tbl_customiseform1.form_id FROM tbl_customiseform1 INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform1.form_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform1.form_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform1.cust_id";
+
+            $res=mysqli_query($conn,$query);
+            
+            while($rows=mysqli_fetch_array($res))
+            {
+            ?>
+            <tr>
+                <td><?php echo $rows['cust_name'];?></td>
+                <td><?php echo $rows['form_email'];?></td>
+                <td><?php echo $rows['form_phone'];?></td>
+                <td><?php echo $rows['cat_name'];?></td>
+                <td><?php echo $rows['subcat_name'];?></td>
+                <td><?php echo $rows['form_mat'];?></td>
+                <td><?php echo $rows['form_measure'];?></td>
+                <td><?php echo $rows['form_sug'];?></td>
+                <td><a href="respond.php?respond=<?php echo $rows['form_id']; ?>">respond</td>
+            </tr>
+            <?php
+            }
+        ?>
+        </table>
+        <?php mysqli_close($conn);
+        ?>
+    </form>
     </section>
-  </div>
+
+    </div>
+
 </body>
 
 </html>
