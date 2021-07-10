@@ -18,8 +18,8 @@
     $measure=$_POST['measurements'];
     $sug=$_POST['suggestion'];
     $date=$_POST['date'];
-    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug,form_date)
-   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug','$date')";
+    $sql = "INSERT INTO tbl_customiseform1 (cust_id,form_email,form_phone,form_cat,form_subcat,form_mat,form_measure,form_sug,form_date,form_status)
+   VALUES ('$cust_id','$email','$phn','$cat','$subcat','$mat','$measure','$sug','$date','0')";
   if (mysqli_query($conn,$sql))
    {
      echo "Your request was sent successfully !";

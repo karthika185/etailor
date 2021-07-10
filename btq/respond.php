@@ -29,7 +29,7 @@ mysqli_query($conn,$query);
    else
    {
     echo "Error: " . $sql . "
-" . mysqli_error($conn);;
+" . mysqli_error($conn);
    }
    mysqli_close($conn);
   }
@@ -48,7 +48,7 @@ mysqli_query($conn,$query);
         function metre()
               {
               var n=document.getElementById("mtr");
-              var e=/^[0-9]+$/;;
+              var e=/^[0-9]+$/;
               if(n.value == "")
               {
                 document.getElementById("span1").innerHTML = "<span class='error'>Please Total Metre</span>";
@@ -69,7 +69,7 @@ mysqli_query($conn,$query);
               function cost()
               {
               var n=document.getElementById("tot");
-              var e=/^[0-9]+$/;;
+              var e=/^[0-9]+$/;
               if(n.value == "")
               {
                 document.getElementById("span2").innerHTML = "<span class='error'>Please enter total cost</span>";

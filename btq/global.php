@@ -280,7 +280,7 @@ header('location:../login.php');
             <?php
             include("../dbconn.php");
             
-            $query="SELECT tbl_custreg.cust_name,tbl_customiseform1.form_email,tbl_customiseform1.cust_id,tbl_customiseform1.form_phone,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_customiseform1.form_mat,tbl_customiseform1.form_measure,tbl_customiseform1.form_sug,tbl_customiseform1.form_id FROM tbl_customiseform1 INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform1.form_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform1.form_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform1.cust_id";
+            $query="SELECT tbl_custreg.cust_name,tbl_customiseform1.form_email,tbl_customiseform1.cust_id,tbl_customiseform1.form_phone,tbl_category.cat_name,tbl_subcategory.subcat_name,tbl_customiseform1.form_mat,tbl_customiseform1.form_measure,tbl_customiseform1.form_sug,tbl_customiseform1.form_id FROM tbl_customiseform1 INNER JOIN tbl_category ON tbl_category.cat_id=tbl_customiseform1.form_cat INNER JOIN tbl_subcategory ON tbl_subcategory.subcat_id=tbl_customiseform1.form_subcat INNER JOIN tbl_custreg ON tbl_custreg.cust_id=tbl_customiseform1.cust_id WHERE form_status=0";
 
             $res=mysqli_query($conn,$query);
             
@@ -296,7 +296,7 @@ header('location:../login.php');
                 <td><?php echo $rows['form_mat'];?></td>
                 <td><?php echo $rows['form_measure'];?></td>
                 <td><?php echo $rows['form_sug'];?></td>
-                <td><a href="respond.php?respond=<?php echo $rows['form_id']; ?>">respond</td>
+                <td><a href="respondglobal.php?respond=<?php echo $rows['form_id']; ?>">respond</td>
             </tr>
             <?php
             }
